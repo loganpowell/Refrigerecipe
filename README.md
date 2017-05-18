@@ -13,3 +13,26 @@ An app for singles, couples and - mostly bachelors...
 2) The app takes the inventory and searches through a database or API of recipes to find a selection which require little or no purchases of additional ingredients
 3)  you choose the recipe you want and it gives you a shopping list
 4) you can either send the shopping list to instacart or to yourself via SMS at a future time (reminder)
+
+Requirements:
+Node/Express: done.
+  GETs: recipes, ingredients
+  Post: fridge ingredients, needed ingredients,
+  
+New packages: peapod, google calendar
+
+Mysql database (-v 0.1)
+  Structure:
+    users: userid, password (should be the same as peadpod)
+    userfood id: userid, foodid, userhas
+    ingredients ingredientid, ingredientname
+    userecipeid, userid(fk), recipeid(fk) (if we save recipes)
+    recipeid, recipeurl, recipename (if we save recipes)
+  
+ Interfaces required:
+  login/create account
+  view/edit fridge ingredients
+  view recipes/ingredients/missing ingredients (possbily with identified missing ingredients?)
+ (would we need an interface for missing ingredients if we sent them to peapod?  Maybe.)
+ 
+ SEO note:  Shawn: look into google mobile recipe data structure and schema.org possibilities.
