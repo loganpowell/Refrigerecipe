@@ -1,30 +1,29 @@
-// Dependencies
-// =============================================================
+"use strict";
 
-// This may be confusing but here Sequelize (capital) references the standard library
-var Sequelize = require("sequelize");
-// sequelize (lowercase) references our connection to the DB.
+module.exports = function(sequelize, Sequelize) {
+    var fridges = sequelize.define("fridges", {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        fridge_name: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        user_id:{
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        }
+    }, {
+        classMethods: {
+            associate: function(models) {
+                // associations can be defined here
+            }
+        }
+    });
 
-// Creates a "Chirp" model that matches up with DB
-var fridge = sequelize.define("fridges", {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    burger_name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    devoured:{
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    }
-});
-fridge.name = "fridge";
+    fridges.sync();
 
-// Syncs with DB
-fridge.sync();
-
-// Makes the Chirp Model available for other files (will also create a table)
-module.exports = fridge;
+    return fridges;
+};
