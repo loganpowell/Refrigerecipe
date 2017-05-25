@@ -1,17 +1,15 @@
-CREATE DATABASE IF NOT EXISTS fridgerecipe;
-USE fridgerecipe;
-
 /*if the following tables don not exist, remove them before trying to create the tables */
 
+/*fridge_content is list of contents in fridges.*/
+DROP TABLE IF EXISTS fridge_contents;
 /*list of all possible ingredients, users may not exceed the list's content.  This is basically a list of all of world's
 possible ingredients*/
 DROP TABLE IF EXISTS ingredients;
-/*list of users*/
-DROP TABLE IF EXISTS users;
 /*list of fridges.  Fridges is linked to a user (a list of users, in the future), and fridge contains a list of ingredients*/
 DROP TABLE IF EXISTS fridges;
-/*fridge_content is list of contents in fridges.*/
-DROP TABLE IF EXISTS fridge_contents;
+/*list of users*/
+DROP TABLE IF EXISTS users;
+
 
 
 /*create the ingredient table*/
@@ -32,7 +30,12 @@ PRIMARY KEY(id)
 CREATE TABLE fridges (
 id INT NOT NULL AUTO_INCREMENT,
 fridge_name varchar(255) NOT NULL,
-PRIMARY KEY(id)
+user_id INT NOT NULL,
+PRIMARY KEY(id),
+FOREIGN KEY (user_id)
+    REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE fridge_contents (
