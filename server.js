@@ -60,7 +60,13 @@ app.set("view engine", "handlebars");
 
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-require("./routes/handlebars-routes.js")(app);
+// require("./routes/handlebars-routes.js")(app);
+
+var fridges_route = require("./controllers/fridges_controller");
+app.use("/", fridges_route);
+app.use("/fridges", fridges_route);
+app.use("/fridges/update", fridges_route);
+app.use("/fridges/create", fridges_route);
 
 var PORT = process.env.PORT || 3000;
 

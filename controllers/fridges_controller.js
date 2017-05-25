@@ -4,9 +4,6 @@ var router = express.Router();
 var db = require("../models");
 var fridges = db.fridges;
 
-router.get("/", function(req, res) {
-    res.redirect("/fridges");
-});
 
 router.get("/fridges", function(req, res) {
     // express callback response by calling burger.selectAllBurger
@@ -15,7 +12,8 @@ router.get("/fridges", function(req, res) {
             // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
             var hbsObject = { fridges: data };
             console.log("shit");
-            res.render("index", hbsObject);
+            //res.render("fridges", hbsObject);
+            res.render("fridges", hbsObject);
         });
 });
 
