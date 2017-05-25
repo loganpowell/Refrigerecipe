@@ -53,10 +53,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+require("./routes/handlebars-routes.js")(app);
 
 var PORT = process.env.PORT || 3000;
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });
