@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c272a35f-458b-47ed-bd06-5730f258b7eb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/heroku_schema.sql" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/db/schema.sql" afterPath="$PROJECT_DIR$/db/local_schema.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/recipe_controller.js" afterPath="$PROJECT_DIR$/controllers/recipe_controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.sql" afterPath="$PROJECT_DIR$/db/seeds.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/db/local_schema.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="483">
-              <caret line="57" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="1" />
+              <caret line="57" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -85,8 +80,8 @@
       <file leaf-file-name="seeds.sql" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="14" column="88" lean-forward="true" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -144,6 +139,7 @@
         <option value="$PROJECT_DIR$/controllers/recipe_controller.js" />
         <option value="$PROJECT_DIR$/db/schema.sql" />
         <option value="$PROJECT_DIR$/db/heroku_schema.sql" />
+        <option value="$PROJECT_DIR$/db/seeds.sql" />
       </list>
     </option>
   </component>
@@ -344,12 +340,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495724890503</updated>
-      <workItem from="1495724892275" duration="3724000" />
+      <workItem from="1495724892275" duration="4138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3724000" />
+    <option name="totallyTimeSpent" value="4138000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="23" width="1593" height="1027" extended-state="0" />
@@ -474,7 +470,7 @@
     <entry file="file://$PROJECT_DIR$/db/local_schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
-          <caret line="57" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="1" />
+          <caret line="57" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="57" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -489,8 +485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="14" column="88" lean-forward="true" selection-start-line="14" selection-start-column="88" selection-end-line="14" selection-end-column="88" />
           <folding />
         </state>
       </provider>
