@@ -20,11 +20,9 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/burgers_controller");
+var login_routes = require("./controllers/login_controllers");
+var ingredients_routes = require("./controllers/ingredient_controllers");
 
-app.use("/", routes);
-app.use("/update", routes);
-app.use("/create", routes);
 
 // listen on port 3000
 var PORT = process.env.PORT || 3000;
