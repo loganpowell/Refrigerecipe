@@ -1,23 +1,24 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "database_development",
+    "password": "1111",
+    "database": "fridgerecipe_dev",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
-    "database": "database_test",
+    "password": "1111",
+    "database": "fridgerecipe_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "b1fbdb46c0d048",
+    "password": "2bfe4dc7",
+    "database": "heroku_9623d0bada37026",
+    "host": "us-cdbr-iron-east-03.cleardb.net",
     "dialect": "mysql"
-  }
+  },
+  "use_env_variable": true
 }

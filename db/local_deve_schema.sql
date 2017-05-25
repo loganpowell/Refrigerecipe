@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS fridgerecipe;
-USE fridgerecipe;
+CREATE DATABASE IF NOT EXISTS fridgerecipe_dev;
+USE fridgerecipe_dev;
 
 /*if the following tables don not exist, remove them before trying to create the tables */
 
