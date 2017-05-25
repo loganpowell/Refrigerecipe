@@ -20,8 +20,13 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var login_routes = require("./controllers/login_controllers");
-var ingredients_routes = require("./controllers/ingredient_controllers");
+//var ingredients_routes = require("./controllers/ingredients_controller");
+var fridges_routes = require("./controllers/fridges_controller");
+//var recipes_routes = require("./controllers/recipes_controller");
+
+app.use("/fridges", fridges_routes);
+app.use("/fridges/update", fridges_routes);
+app.use("/fridges/create", fridges_routes);
 
 
 // listen on port 3000
