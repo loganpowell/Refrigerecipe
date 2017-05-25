@@ -40,7 +40,22 @@ Whether to maximize used ingredients (1) or minimize missing ingredients (2) fir
 
 1
 
+*****This is request***
+
+https://market.mashape.com/spoonacular/recipe-food-nutrition#search-recipes-by-ingredients
+
+/ These code snippets use an open-source library. http://unirest.io/nodejs
+unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
+.header("X-Mashape-Key", "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn")
+.header("Accept", "application/json")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
 /*Response:*/
+
+
+****To get the actual recipe*****
+https://market.mashape.com/spoonacular/recipe-food-nutrition#get-recipe-information
 
 
 
