@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, Sequelize) {
-    var fridges = sequelize.define("fridge_contents", {
+    var ingredients = sequelize.define("ingredients", {
         id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
@@ -19,7 +19,7 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
 
-    fridges.sync();
+    ingredients.sync();
 
-    return fridges;
+    return ingredients;
 };
