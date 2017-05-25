@@ -14,35 +14,6 @@ app.use(bodyParser.urlencoded({
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 
-
-// var exphbs = require("express-handlebars");
-//
-// app.engine("handlebars", exphbs({
-//     defaultLayout: "main"
-// }));
-// app.set("view engine", "handlebars");
-
-//var ingredients_routes = require("./controllers/ingredients_controller");
-// var fridges_routes = require("./controllers/fridges_controller");
-//var recipes_routes = require("./controllers/recipes_controller");
-
-// app.use("/", fridges_routes);
-// app.use("/fridges", fridges_routes);
-// app.use("/fridges/update", fridges_routes);
-// app.use("/fridges/create", fridges_routes);
-
-
-// // listen on port 3000
-// var PORT = process.env.PORT || 3000;
-//
-// // Syncing our sequelize models and then starting our express app
-// db.sequelize.sync().then(function() {
-//     app.listen(PORT, function() {
-//         console.log("App listening on PORT " + PORT);
-//     });
-// });
-
-
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -63,6 +34,8 @@ require("./routes/api-routes.js")(app);
 // require("./routes/handlebars-routes.js")(app);
 require("./controllers/fridges_controller")(app);
 require("./controllers/recipes_controller")(app);
+require("./controllers/cart_controller")(app);
+require("./controllers/login_controller")(app);
 
 
 var PORT = process.env.PORT || 3000;
