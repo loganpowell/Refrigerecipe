@@ -1,4 +1,3 @@
-var fridges_route = require("./controllers/fridges_contoller");
 
 module.exports = function(app) {
     //map some api to these function
@@ -6,7 +5,5 @@ module.exports = function(app) {
     //    do something
     //
     // });
-    app.use("/fridges", fridges_route);
-    app.use("/fridges/update", fridges_route);
-    app.use("/fridges/create", fridges_route);
+
 };
