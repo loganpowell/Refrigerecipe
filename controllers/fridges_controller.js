@@ -12,7 +12,6 @@ module.exports = function (app) {
             .then(function(data) {
                 // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
                 var hbsObject = { fridges: data };
-                console.log("shit");
                 //res.render("fridges", hbsObject);
                 res.render("fridges", hbsObject);
             });

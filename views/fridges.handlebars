@@ -1,106 +1,81 @@
-<!-- NAVIGATION -->
-<div class="ui container">
-    <div class="ui secondary pointing menu">
-        <a class=" item" href="#">
-            <i class="cube icon"></i>
-            Refrigerecipe
-        </a>
-        <a class="active item" href="./fridges">
-            Fridge
-        </a>
-        <a class="item" href="./recipes.html">
-            Recipes
-        </a>
-        <div class="right menu">
-            <a class="ui item" href="./cart.html">
-                <i class="shop icon"></i>
-                Cart
-            </a>
-            <a class="ui item" href="./login.html">
-                Login
-            </a>
+<div class="ui middle aligned center aligned grid">
+    <div class="column ingredients">
+        <h2 class="ui header">
+            <div class="ui horizontal divider">
+                What's in the fridge?
+            </div>
+        </h2>
+        <!-- SECONDARY TOGGLE ALL MENU -->
+        <div class="ui mini menu">
+            <div class="item">
+                <div class="ui uncheck button align right">All Gone</div>
+            </div>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui check button blue">Refresh All</div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="ui middle aligned center aligned grid">
-        <div class="column ingredients">
-            <h2 class="ui header">
-                <div class="ui horizontal divider">
-                    What's in the fridge?
-                </div>
-            </h2>
-            <!-- SECONDARY TOGGLE ALL MENU -->
-            <div class="ui mini menu">
-                <div class="item">
-                    <div class="ui uncheck button align right">All Gone</div>
-                </div>
-                <div class="right menu">
-                    <div class="item">
-                        <div class="ui check button blue">Refresh All</div>
+        <!-- ADD INGREDIENT -->
+
+        <div class="ui big fluid labeled left icon action input">
+            <input type="text" placeholder="Add Ingredient">
+            <i class="shopping basket icon"></i>
+            <button class="ui icon button blue">
+                <i class="check icon"></i>
+            </button>
+        </div>
+
+        <!-- ADDED INGREDIENTS -->
+        <div class="ui big relaxed divided list">
+
+            <!-- INGREDIENT -->
+            <div class="item">
+                <div class="left floated content">
+                    <div class="ui toggle checkbox middle aligned">
+                        <input type="checkbox" checked="checked">
                     </div>
+                </div>
+                <div class="left floated content">
+                    <h3>Brocolli</h3>
+                </div>
+                <div class="right floated content">
+                    <button class="compact mini ui icon button black">
+                        <i class="trash icon"></i>
+                    </button>
                 </div>
             </div>
-
-            <!-- ADD INGREDIENT -->
-
-            <div class="ui big fluid labeled left icon action input">
-                <input type="text" placeholder="Add Ingredient">
-                <i class="shopping basket icon"></i>
-                <button class="ui icon button blue">
-                    <i class="check icon"></i>
-                </button>
+            <!-- INGREDIENT -->
+            <div class="item">
+                <div class="left floated content">
+                    <div class="ui toggle checkbox middle aligned">
+                        <input type="checkbox" checked="checked">
+                    </div>
+                </div>
+                <div class="left floated content">
+                    <h3>Brocolli</h3>
+                </div>
+                <div class="right floated content">
+                    <button class="compact mini ui icon button black">
+                        <i class="trash icon"></i>
+                    </button>
+                </div>
             </div>
-
-            <!-- ADDED INGREDIENTS -->
-            <div class="ui big relaxed divided list">
-
-                <!-- INGREDIENT -->
-                <div class="item">
-                    <div class="left floated content">
-                        <div class="ui toggle checkbox middle aligned">
-                            <input type="checkbox" checked="checked">
-                        </div>
-                    </div>
-                    <div class="left floated content">
-                        <h3>Brocolli</h3>
-                    </div>
-                    <div class="right floated content">
-                        <button class="compact mini ui icon button black">
-                            <i class="trash icon"></i>
-                        </button>
+            <!-- INGREDIENT -->
+            <div class="item">
+                <div class="left floated content">
+                    <div class="ui toggle checkbox middle aligned">
+                        <input type="checkbox" checked="checked">
                     </div>
                 </div>
-                <!-- INGREDIENT -->
-                <div class="item">
-                    <div class="left floated content">
-                        <div class="ui toggle checkbox middle aligned">
-                            <input type="checkbox" checked="checked">
-                        </div>
-                    </div>
-                    <div class="left floated content">
-                        <h3>Brocolli</h3>
-                    </div>
-                    <div class="right floated content">
-                        <button class="compact mini ui icon button black">
-                            <i class="trash icon"></i>
-                        </button>
-                    </div>
+                <div class="left floated content">
+                    <h3>Brocolli</h3>
                 </div>
-                <!-- INGREDIENT -->
-                <div class="item">
-                    <div class="left floated content">
-                        <div class="ui toggle checkbox middle aligned">
-                            <input type="checkbox" checked="checked">
-                        </div>
-                    </div>
-                    <div class="left floated content">
-                        <h3>Brocolli</h3>
-                    </div>
-                    <div class="right floated content">
-                        <button class="compact mini ui icon button black">
-                            <i class="trash icon"></i>
-                        </button>
-                    </div>
+                <div class="right floated content">
+                    <button class="compact mini ui icon button black">
+                        <i class="trash icon"></i>
+                    </button>
                 </div>
             </div>
         </div>
