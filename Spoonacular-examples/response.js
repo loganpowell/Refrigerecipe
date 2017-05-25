@@ -56,7 +56,13 @@ unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/
 
 ****To get the actual recipe*****
 https://market.mashape.com/spoonacular/recipe-food-nutrition#get-recipe-information
-
+// These code snippets use an open-source library. http://unirest.io/nodejs
+unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/479101/information?includeNutrition=false")
+.header("X-Mashape-Key", "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn")
+.header("Accept", "application/json")
+.end(function (result) {
+  console.log(result.status, result.headers, result.body);
+});
 
 
 [{
