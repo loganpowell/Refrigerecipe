@@ -29,7 +29,7 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-require("./routes/html-routes.js")(app);
+//require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 // require("./routes/handlebars-routes.js")(app);
 require("./controllers/fridges_controller")(app);
