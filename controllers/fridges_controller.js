@@ -18,6 +18,7 @@ module.exports = function (app) {
             });
     });
 
+    //todo: get the id to the internal
     app.get("/fridges/:id", function (req, res) {
         fridge_contents.findAll({fridge_id:1})
             .then(function(data) {
@@ -28,6 +29,7 @@ module.exports = function (app) {
             });
     });
 
+    //todo: what do I need to do update?
     app.put("/fridges/update", function(req, res) {
         // fridge_contents.update(req.body.burger_id, function(result) {
         //     console.log(result);
