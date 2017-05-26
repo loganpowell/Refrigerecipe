@@ -11,9 +11,9 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER,
             defaultValue: 0
         },
-        ingredient_id:{
-            type: Sequelize.INTEGER,
-            defaultValue: 0
+        ingredient:{
+            type: Sequelize.String,
+            allowNull: false
         },
         servings_count: {
             type:Sequelize.FLOAT,
