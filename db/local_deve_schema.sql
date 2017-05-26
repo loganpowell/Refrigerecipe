@@ -44,7 +44,7 @@ FOREIGN KEY (user_id)
 CREATE TABLE fridge_contents (
 id INT NOT NULL AUTO_INCREMENT,
 fridge_id INT,
-ingredient varchar(255), NOT NULL,
+ingredient varchar(255) NOT NULL,
 servings_count FLOAT DEFAULT 0.0,
 PRIMARY KEY(id),
 FOREIGN KEY (fridge_id)
