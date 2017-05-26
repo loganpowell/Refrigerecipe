@@ -11,7 +11,7 @@ var path = require("path");
 // =============================================================
 module.exports = function(app) {
 
-    // Index route loads index.html
+    // Index route loads index.handlebars
     app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/login.html"));
     });
