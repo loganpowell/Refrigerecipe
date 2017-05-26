@@ -2,6 +2,7 @@
 
 var express = require("express");
 var db = require("../models");
+var fridges = db.fridges;
 var fridge_contents = db.fridge_contents;
 
 
@@ -33,4 +34,4 @@ module.exports = function (app) {
         //     res.redirect("/");
         // });
     })
-}
+};
