@@ -16,11 +16,13 @@ module.exports = function(sequelize, Sequelize) {
             defaultValue: 0
         }
     }, {
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-            }
-        }
+        // classMethods: {
+        //     associate: function(models) {
+        //         // associations can be defined here
+        //     }
+        // },
+        timestamps: false,
+        underscored: true
     });
 
     fridges.sync();

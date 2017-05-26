@@ -12,11 +12,13 @@ module.exports = function(sequelize, Sequelize) {
             allowNull:false
         }
     }, {
-        classMethods: {
-            associate: function(models) {
-                // associations can be defined here
-            }
-        }
+        // classMethods: {
+        //     associate: function(models) {
+        //         // associations can be defined here
+        //     }
+        // },
+        timestamps: false,
+        underscored: true
     });
 
     ingredients.sync();
