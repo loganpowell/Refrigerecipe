@@ -8,7 +8,7 @@ module.exports = function (sequelize, Sequelize) {
       autoIncrement: true
     },
     fridge_name: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(255),
       allowNull: false
     },
     user_id: {
@@ -16,7 +16,7 @@ module.exports = function (sequelize, Sequelize) {
       defaultValue: 0
     },
     ingredients: {
-      type:Sequelize.STRING
+      type:Sequelize.STRING(4095)
     }
   }, {
     // classMethods: {
