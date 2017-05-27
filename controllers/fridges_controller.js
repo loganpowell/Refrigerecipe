@@ -38,7 +38,7 @@ module.exports = function (app) {
             .then(function(data) {
               if(!!data) {
                 var fridge_contents = data.map(function(elem) {
-                  return {id:elem.id, ingredient:elem.ingredient, servings_count:elem.ingredient_count};
+                  return {ingredient:elem.ingredient, servings_count:elem.servings_count};
                 });
                 resData['fridge_contents'] =fridge_contents;
                 res.json(resData);
@@ -74,17 +74,45 @@ module.exports = function (app) {
   });
 
   //PUT /fridges/:id
+  //update the fridge and fridge content in a single API.
   app.put("/fridges/:id", function(req, res) {
     //todo change this
     var user_id = 1;
     var fridge_id = parseInt(req.params.id, 10);
-    var fridge_contents = _.pick(req.body, 'fridge_contents');
+    var fridge_attributes = _.pick(req.body, "fridge_name", "user_id");
+    var body_fridge_contents = req.body['fridge_contents'];
 
     fridges.findById(fridge_id)
       .then(function(fridge) {
         if(fridge) {
           //todo: update fridge_contents in here
           //
+          fridge.update(fridge_attributes)
+            .then(function(fridge) {
+              fridge_contents.findAll({where: {fridge_id: fridge.id}})
+                .then(function(data) {
+                  if(!!data) {
+                    var all_fridget_content_ids = data.map(function(elem) {return elem.id;});
+                    fridge_contents.destroy({where:{id:all_fridget_content_ids}})
+                      .then(function() {})
+                  }
+                  //else don't worry
+                })
+                .then(function() {
+                  var content_records = body_fridge_contents.map(function(elem) {
+                    if(typeof elem.ingredient !== 'undefined' && typeof elem.servings_count !== 'undefined') {
+                      return {fridge_id: fridge.id, ingredient: elem.ingredient, servings_count: elem.servings_count};
+                    }
+                  });
+                  fridge_contents.bulkCreate(content_records, function(err) {
+                    res.status(500).send();
+                  });
+                })
+            })
+
+            .then(function() {
+              res.status(200).send();
+            })
 
         }else {
           res.status(404).send();
