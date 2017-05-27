@@ -4,15 +4,15 @@ var express = require("express");
 var db = require("../models");
 var _ = require('underscore')
 var fridges = db.fridges;
-var fridge_contents = db.fridge_contents;
 
 
 
 module.exports = function (app) {
   //**** start of view renderers ****/
   app.get("/fridges", function (req, res) {
+    //todo rewite this
     // express callback response by calling burger.selectAllBurger
-    fridge_contents.findAll({fridge_id: 1})
+    fridges.findById(1)
       .then(function (data) {
         // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
         var hbsObject = {fridges: data};
@@ -34,22 +34,7 @@ module.exports = function (app) {
         // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
         if (!!data) {
           var resData = {id: data.id, fridge_name :data.fridge_name, user_id: data.user_id};
-          fridge_contents.findAll({where: {fridge_id:fridgeId}})
-            .then(function(data) {
-              if(!!data) {
-                var fridge_contents = data.map(function(elem) {
-                  return {ingredient:elem.ingredient, servings_count:elem.servings_count};
-                });
-                resData['fridge_contents'] =fridge_contents;
-                res.json(resData);
-              }else {
-                //there's no content in fridge, directly return resData;
-                resData['fridge_contents'] = [];
-                res.json(resData);
-              }
-            }, function(err) {
-              res.status(500).send(err);
-            });
+          //rewrite
 
         }else {
           res.status(404).send();
@@ -86,33 +71,7 @@ module.exports = function (app) {
       .then(function(fridge) {
         if(fridge) {
           //todo: update fridge_contents in here
-          //
-          fridge.update(fridge_attributes)
-            .then(function(fridge) {
-              fridge_contents.findAll({where: {fridge_id: fridge.id}})
-                .then(function(data) {
-                  if(!!data) {
-                    var all_fridget_content_ids = data.map(function(elem) {return elem.id;});
-                    fridge_contents.destroy({where:{id:all_fridget_content_ids}})
-                      .then(function() {})
-                  }
-                  //else don't worry
-                })
-                .then(function() {
-                  var content_records = body_fridge_contents.map(function(elem) {
-                    if(typeof elem.ingredient !== 'undefined' && typeof elem.servings_count !== 'undefined') {
-                      return {fridge_id: fridge.id, ingredient: elem.ingredient, servings_count: elem.servings_count};
-                    }
-                  });
-                  fridge_contents.bulkCreate(content_records, function(err) {
-                    res.status(500).send();
-                  });
-                })
-            })
-
-            .then(function() {
-              res.status(200).send();
-            })
+          
 
         }else {
           res.status(404).send();
