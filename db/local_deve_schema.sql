@@ -22,7 +22,7 @@ CREATE TABLE fridges (
 id INT NOT NULL AUTO_INCREMENT,
 fridge_name varchar(255) NOT NULL,
 user_id INT NOT NULL,
-content varchar (2048),
+content varchar (4096),
 PRIMARY KEY(id),
 FOREIGN KEY (user_id)
     REFERENCES users(id)
