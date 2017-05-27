@@ -2,7 +2,7 @@
 
 var express = require("express");
 var db = require("../models");
-var _ = require('underscore')
+var _ = require('underscore');
 var fridges = db.fridges;
 
 
@@ -33,9 +33,9 @@ module.exports = function (app) {
       .then(function (data) {
         // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
         if (!!data) {
-          var resData = {id: data.id, fridge_name :data.fridge_name, user_id: data.user_id};
-          //rewrite
-
+          var resData = _.pick(data, "id", "fridge_name", "user_id", "ingredients");
+          resData.ingredients = JSON.parse(resData.ingredients);
+          res.json(resData);
         }else {
           res.status(404).send();
         }
@@ -64,15 +64,19 @@ module.exports = function (app) {
     //todo change this
     var user_id = 1;
     var fridge_id = parseInt(req.params.id, 10);
-    var fridge_attributes = _.pick(req.body, "fridge_name", "user_id");
-    var body_fridge_contents = req.body['fridge_contents'];
 
     fridges.findById(fridge_id)
       .then(function(fridge) {
         if(fridge) {
-          //todo: update fridge_contents in here
-          
-
+          //todo: enable authorization check based on user_id
+          var updateAttributes = _.pick(req.body, "fridge_name", "user_id", "ingredients");
+          updateAttributes.ingredients = JSON.stringify(updateAttributes.ingredients);
+          fridge.update(updateAttributes)
+            .then(function() {
+              res.status(200).send();
+            }, function(err) {
+              res.status(500).send();
+            });
         }else {
           res.status(404).send();
         }
