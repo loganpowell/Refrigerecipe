@@ -45,12 +45,14 @@ module.exports = function (app) {
   });
 
   //todo: create a new fridge
-  app.post("/fridges/create", function (req, res) {
+  app.post("/fridges", function (req, res) {
     //var user_id = parseInt(req.body, 'user_id', 'fridge_name');
-    var body = _.pick(req.body, 'user_id', 'fridge_name');
+    var body = _.pick(req.body, 'user_id', 'fridge_name', "ingredients");
+    body.ingredients = JSON.stringify(body.ingredients)
 
     fridges.create(body)
       .then(function (fridge) {
+        fridge.ingredients = JSON.parse(fridge.ingredients);
         res.json(fridge.toJSON());
       }, function (err) {
         res.status(400).json(err);
@@ -72,8 +74,9 @@ module.exports = function (app) {
           var updateAttributes = _.pick(req.body, "fridge_name", "user_id", "ingredients");
           updateAttributes.ingredients = JSON.stringify(updateAttributes.ingredients);
           fridge.update(updateAttributes)
-            .then(function() {
-              res.status(200).send();
+            .then(function(fridge) {
+              fridge.ingredients = JSON.parse(fridge.ingredients);
+              res.status(200).json(fridge);
             }, function(err) {
               res.status(500).send();
             });
@@ -85,13 +88,7 @@ module.exports = function (app) {
       })
 
   });
-  //todo: what do I need to do update?
-  app.put("/fridges/update", function (req, res) {
-    // fridge_contents.update(req.body.burger_id, function(result) {
-    //     console.log(result);
-    //     res.redirect("/");
-    // });
-  });
+
 
   /****** end of API end points *******/
 };
