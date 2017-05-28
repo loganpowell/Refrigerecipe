@@ -19,11 +19,12 @@ module.exports = function(sequelize, Sequelize) {
             type:Sequelize.STRING,
         }
     }, {
-        // classMethods: {
-        //     associate: function(models) {
-        //         // associations can be defined here
-        //     }
-        // },
+        classMethods: {
+            associate: function(models) {
+                // associations can be defined here
+              users.hasOne(models.fridges, {foreignKey: "user_id", onDelete:'cascade'});
+            }
+        },
         timestamps: false,
         underscored: true
     });

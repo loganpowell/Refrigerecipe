@@ -89,6 +89,5 @@ module.exports = function (app) {
 
   });
 
-
   /****** end of API end points *******/
 };
