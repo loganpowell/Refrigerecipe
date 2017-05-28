@@ -9,7 +9,7 @@ var fridges = db.fridges;
 
 module.exports = function (app) {
   //**** start of view renderers ****/
-  app.get("/fridges", function (req, res) {
+  app.get("/fridge", function (req, res) {
     //todo rewite this
     // express callback response by calling burger.selectAllBurger
     fridges.findById(1)
@@ -26,7 +26,7 @@ module.exports = function (app) {
 
   /****** start of API end points ****/
 
-  app.get("/fridges/:id", function (req, res) {
+  app.get("/fridge/:id", function (req, res) {
 
     var fridgeId = parseInt(req.params.id, 10);
     fridges.findById(fridgeId)
@@ -45,7 +45,7 @@ module.exports = function (app) {
   });
 
   //todo: create a new fridge
-  app.post("/fridges", function (req, res) {
+  app.post("/fridge", function (req, res) {
     //var user_id = parseInt(req.body, 'user_id', 'fridge_name');
     var body = _.pick(req.body, 'user_id', 'fridge_name', "ingredients");
     body.ingredients = JSON.stringify(body.ingredients)
@@ -62,7 +62,7 @@ module.exports = function (app) {
 
   //PUT /fridges/:id
   //update the fridge and fridge content in a single API.
-  app.put("/fridges/:id", function(req, res) {
+  app.put("/fridge/:id", function(req, res) {
     //todo change this
     var user_id = 1;
     var fridge_id = parseInt(req.params.id, 10);
