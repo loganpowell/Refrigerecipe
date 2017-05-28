@@ -2,7 +2,7 @@ function FridgeUI() {
 
 }
 
-FridgeUI.prototype.getFridgeContents = function(id) {
+FridgeUI.prototype.getFridgeIngredients = function(id) {
   //assume fridge id always 1 at this point
   var queryURL = "/fridge/1";
   $.ajax( {
@@ -14,8 +14,19 @@ FridgeUI.prototype.getFridgeContents = function(id) {
   }.bind(this))
 };
 
+FridgeUI.prototype.putFridgeIngredients = function(id, data) {
+  //assume fridge id is still 1
+  //todo wire up fridge ID, finish this
+  var queryURL=  "/fridge/1";
+  var putParams = _.pick(data, "fridge_name", "user_id", "ingredients");
+  $.ajax( {
+    url: queryURL,
+    method:"PUT"
+  })
+};
+
 
 window.onload = function() {
   window.fridgeUI = new FridgeUI();
-  window.fridgeUI.getFridgeContents(1);
+  window.fridgeUI.getFridgeIngredients(1);
 };
