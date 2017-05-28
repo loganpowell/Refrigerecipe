@@ -9,7 +9,11 @@ indent_size=4
 indent_style=space
 indent_size=2
 
-[*.coffee]
+[{*.js,*.handlebars,*.hbs}]
+indent_style=space
+indent_size=2
+
+[*.coffee, *.html]
 indent_style=space
 indent_size=2
 
