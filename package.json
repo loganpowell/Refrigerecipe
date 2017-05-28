@@ -18,7 +18,8 @@
     "karma-commonjs": "^1.0.0",
     "karma-mocha": "^1.1.1",
     "karma-mocha-reporter": "^2.2.1",
-    "watchify": "^3.7.0"
+    "watchify": "^3.7.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "handlebars-helper-css": "^0.1.0"
