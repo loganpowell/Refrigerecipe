@@ -18,47 +18,53 @@ function FridgeUI() {
 // user_id
 //   :
 //   1
-FridgeUI.prototype.getFridgeIngredients = function(id) {
-  //assume fridge id always 1 at this point
-  var queryURL = "/fridge/1";
-  $.ajax( {
-    url:queryURL,
-    method: "GET"
-  })
-  .done(function(response) {
-    console.log(response);
-    this.ingredients = response.ingredients;
-    this.fridge_name = response.fridge_name;
-    this.id = response.id;
-    this.user_id = response.user_id;
-  }.bind(this))
-};
 
-var getFridgeIngredients = new Promise (
-  function(resolve, reject) {
-    var queryURL = "/fridge/1";
-    $.ajax( {
-      url:queryURL,
-      method:"GET"
-    })
-      .done(function(response) {
-        resolve(response);
+//this function takes the resposne from JSON api /fridge/:id
+// and feed it to the next function.
+FridgeUI.prototype.getFridgeIngredients = function () {
+  return new Promise (
+    function(resolve, reject) {
+      //todo: resolve this id issue.
+      var this_id = this.id;
+      console.log("Fridge id: " + this_id);
+
+      //todo: modify the fridge ID
+      var queryURL = "/fridge/1";
+      $.ajax( {
+        url:queryURL,
+        method:"GET"
       })
-
-  }
-);
-
-var displayFridgeIngredients = function(response) {
-  console.log("response: ")
-  console.log(response);
+        .done(function(response) {
+          resolve(response);
+        })
+        .fail(function(err) {
+          reject(err);
+        });
+    }
+  );
 };
 
-const doSomething = function() {
-  getFridgeIngredients
-    .then(displayFridgeIngredients)
-    .then(fulfilled => console.log("fulfilled: " + fulfilled))
-  .catch(error => console.log(error.message));
+//this function will take the api response data and feed it to
+// the handlebars displya
+FridgeUI.prototype.displayFridgeIngredients = function(resp) {
+  console.log(resp);
+  var ingredient_data = _.pick(resp, 'ingredients');
+  console.log(ingredient_data);
+  var source = $("#fridge-ingredient-template").html();
+  var template =Handlebars.compile(source);
+  var html = template(ingredient_data);
+  console.log(html);
+  $("#ingredient-list-div").append(html);
+
 };
+
+FridgeUI.prototype.addIngredientOnOffButton = function() {
+  $('.checkbox').checkbox('attach events', '.check.button', 'check');
+  $('.checkbox').checkbox('attach events', '.uncheck.button', 'uncheck');
+};
+
+
+
 FridgeUI.prototype.putFridgeIngredients = function(id, data) {
   //assume fridge id is still 1
   //todo wire up fridge ID, finish this
@@ -98,7 +104,10 @@ const templatingTest = function() {
 };
 window.onload = function() {
   window.fridgeUI = new FridgeUI();
+  window.fridgeUI.id = 1;
   //window.fridgeUI.getFridgeIngredients(1);
-  //doSomething();
-  templatingTest();
+  window.fridgeUI.getFridgeIngredients()
+    .then(window.fridgeUI.displayFridgeIngredients)
+    .then(window.fridgeUI.addIngredientOnOffButton);
+  //templatingTest();
 };

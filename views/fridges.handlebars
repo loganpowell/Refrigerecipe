@@ -28,7 +28,7 @@
     </div>
 
     <!-- ADDED INGREDIENTS -->
-    <div class="ui big relaxed divided list">
+    <div id="ingredient-list-div" class="ui big relaxed divided list">
       <!-- INGREDIENT -->
       <div class="item">
         <div class="left floated content">
@@ -50,13 +50,6 @@
   </div>
 </div>
 
-<!-- TOGGLE ALL INGREDIENTS ON/OFF -->
-<script>
-  $(document).ready(function () {
-    $('.checkbox').checkbox('attach events', '.check.button', 'check');
-    $('.checkbox').checkbox('attach events', '.uncheck.button', 'uncheck');
-  });
-</script>
 
 <script id="fridge-ingredient-template" type="text/x-handlebars-template">
   <!-- INGREDIENT -->
