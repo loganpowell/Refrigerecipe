@@ -19,11 +19,11 @@ module.exports = function (sequelize, Sequelize) {
       type:Sequelize.STRING(4095)
     }
   }, {
-    // classMethods: {
-    //     associate: function(models) {
-    //         // associations can be defined here
-    //     }
-    // },
+    classMethods: {
+        associate: function(models) {
+            // associations can be defined here
+        }
+    },
     timestamps: false,
     underscored: true
   });

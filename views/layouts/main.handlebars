@@ -9,6 +9,8 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <link rel="stylesheet" href="./css/style.css">
   <style>
     body {
@@ -20,32 +22,6 @@
   </style>
 </head>
 <body>
-<!-- NAVIGATION -->
-<div class="ui container">
-  <div class="ui secondary pointing menu">
-    <a class="item" href="/">
-      <i class="cube icon"></i>
-      Refrigerecipe
-    </a>
-    <a class="active item" href="./fridges">
-      Fridge
-    </a>
-    <a class="item" href="./recipes">
-      Recipes
-    </a>
-    <div class="right menu">
-      <a class="ui item" href="./cart">
-        <i class="shop icon"></i>
-        Cart
-      </a>
-      <a class="ui item" href="./login">
-        Login
-      </a>
-    </div>
-  </div>
-  {{{body}}}
-</div>
-
-
+{{{body}}}
 </body>
 </html>
