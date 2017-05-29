@@ -60,21 +60,25 @@
 
 <script id="fridge-ingredient-template" type="text/x-handlebars-template">
   <!-- INGREDIENT -->
-  <div class="item">
-    <div class="left floated content">
-      <div class="ui toggle checkbox middle aligned">
-        <input type="checkbox" checked="checked">
+  \{{#each ingredients}}
+    <div class="item">
+      <div class="left floated content">
+        <div class="ui toggle checkbox middle aligned">
+          <input type="checkbox" checked="checked">
+        </div>
+      </div>
+      <div class="left floated content">
+        <h3>\{{ingredient}}</h3>
+      </div>
+      <div class="right floated content">
+        <button class="compact mini ui icon button black">
+          <i class="trash icon"></i>
+        </button>
       </div>
     </div>
-    <div class="left floated content">
-      <h3>{{item}}</h3>
-    </div>
-    <div class="right floated content">
-      <button class="compact mini ui icon button black">
-        <i class="trash icon"></i>
-      </button>
-    </div>
-  </div>
+  \{{/each}}
 </script>
+
+
 
 <script src="js/FridgeUI.js"></script>
