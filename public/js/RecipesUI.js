@@ -1,7 +1,52 @@
 function RecipesUI() {
   var recipesList = [];
 }
-function Recipe() {
-}
-//example of recipe from spoonacular
 
+RecipesUI.prototype.getAllRecipes = function() {
+
+  return new Promise(
+    function(resolve, reject) {
+      var queryURL = "/recipes.json";
+      $.ajax({
+        url:queryURL,
+        method:"GET"
+      })
+        .done(function(resp) {
+          this.recipesList = resp;
+          console.log(resp);
+          resolve(resp);
+        })
+        .fail(function(err) {
+          reject(err);
+        });
+    }
+  );
+
+};
+
+RecipesUI.prototype.displayAllRecipes = function(resp) {
+  console.log(resp);
+  var recipes = {"recipes": resp};
+  var source = $("#recipe-card-template").html();
+  var template =Handlebars.compile(source);
+  var html = template(recipes);
+  console.log(html);
+  $("#recipes-list-div").append(html);
+
+};
+
+window.onload = function() {
+  window.recipesUI = new RecipesUI();
+
+  window.recipesUI.getAllRecipes()
+    .then(window.recipesUI.displayAllRecipes)
+
+};
+
+//
+// <!-- CARD ACTION -->
+// <script>
+// $(document).ready(function () {
+//   $('.menu .item').tab();
+// });
+// </script>
