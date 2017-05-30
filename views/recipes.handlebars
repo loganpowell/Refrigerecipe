@@ -41,7 +41,7 @@
 <script id="recipe-card-template" type="text/x-handlebars-template">
   <!-- recipe handlebar card -->
   \{{#each recipes}}
-  <div class="column">
+  <div id="recipe-\{{id}}" class="column" data=\{{id}}>
     <div class="ui fluid card">
       <div class="content">
         <!-- response.js "title" -->
@@ -54,23 +54,18 @@
       <div class="content">
         <h4 class="ui sub header">Missing Ingredients</h4>
         <div class="ui large list">
-          <!-- response.js "missedIngredients": [{ "name" }] -->
-          <div class="item">whole wheat tortillas</div>
-          <div class="item">potatoes</div>
-          <div class="item">roasted red bell peppers</div>
-          <div class="item">artichoke hearts</div>
-          <div class="item">cooked corn kernels</div>
-          <div class="item">black olives</div>
-          <div class="item">carrots</div>
+          \{{#each this.missedIngredients}}
+          <div class="item">\{{this.name}}</div>
+          \{{/each}}
         </div>
         <div class="content">
           <i class="heart outline like icon"></i>
           <!-- response.js "likes" -->
-          606
+          \{{likes}}
           <span class="right floated">
-  <!-- ** rebound.js "vegetarian" -->
-                <i class="leaf icon"></i>
-              </span>
+            <!-- make the vegetarian thing as a filter -->
+            <i class="leaf icon"></i>
+          </span>
         </div>
       </div>
       <div class="extra content">

@@ -16,7 +16,7 @@ module.exports = function (app) {
     // express callback response by calling burger.selectAllBurger
     // res.render("recipes", {});
     //todo: replace the other parametes with real data.
-    var ingredients = ["apple", "flour", "sugar"];
+    var ingredients = ["chicken", "beef", "flour", "eggs", "milk"];
     var fridge_id = parseInt(req.params.id, 10);
     var user_id = 1;
     var fridge_url = "/fridge/1";
@@ -63,7 +63,7 @@ module.exports = function (app) {
           recipe["missedIngredients"] = recipe["missedIngredients"].map(function(missed_ingredient) {
             return _.pick(missed_ingredient, "id", "amount", "unit", "name", "image");
           });
-          return _.pick(recipe, "id", "title", "image", "missedIngredientCount", "missedIngredients")
+          return _.pick(recipe, "id", "title", "image", "missedIngredientCount", "missedIngredients", "likes")
         });
         return filtered_data;
       })
