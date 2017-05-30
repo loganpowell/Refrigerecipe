@@ -16,12 +16,16 @@ module.exports = function (app) {
     var ingredients = ["apple", "flour", "sugar", ];
     var fridge_id = parseInt(req.params.id, 10);
     var user_id = 1;
+    
 
-
-    unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
-      .header("X-Mashape-Key", "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn")
-      .header("Accept", "application/json")
-      .end(function (result) {
+    axios.get( {
+      baseURL: "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1"
+      headers: [
+        {"X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn"},
+        {"Accept": "application/json"}
+      ]
+    })
+      .then(function(response) {
         console.log(result.status, result.headers, result.body);
       });
   })

@@ -1,6 +1,7 @@
 "use strict"
 var express = require("express");
 var unirest = require('unirest');
+var axios = require('axios');
 
 module.exports = function (app) {
     app.get("/recipes", function(req, res) {
@@ -16,11 +17,24 @@ module.exports = function (app) {
       var user_id = 1;
 
 
-      unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1")
-        .header("X-Mashape-Key", "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn")
-        .header("Accept", "application/json")
-        .end(function (result) {
-          console.log(result.status, result.headers, result.body);
+      axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients",
+        {
+          headers: {
+            "X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn",
+            "Accept": "application/json"
+          },
+          params: {
+            "fillIngredients":"true",
+            // "ingredients": ["apples","flour","sugar"].join(","),
+            "ingredients": "apples,flour,sugar",
+            "limitLicense": "false",
+            "number": "5",
+            "ranking": "1"
+          }
+
+        })
+        .then(function(response) {
+          console.log(response.status, response.headers, response.data);
         });
     })
 };
