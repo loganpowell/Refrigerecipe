@@ -35,18 +35,16 @@ RecipesUI.prototype.displayAllRecipes = function(resp) {
 
 };
 
+RecipesUI.prototype.setUpTab = function() {
+  $('.menu .item').tab();
+};
+
 window.onload = function() {
   window.recipesUI = new RecipesUI();
 
   window.recipesUI.getAllRecipes()
     .then(window.recipesUI.displayAllRecipes)
+    .then(RecipesUI.prototype.setUpTab);
 
 };
 
-//
-// <!-- CARD ACTION -->
-// <script>
-// $(document).ready(function () {
-//   $('.menu .item').tab();
-// });
-// </script>
