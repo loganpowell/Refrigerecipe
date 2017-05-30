@@ -51,8 +51,9 @@
       <div class="image">
         <img src="\{{image}}">
       </div>
-      <div class="content">
+      <div class="content popper">
         <h4 class="ui sub header">Missing Ingredients</h4>
+
         <div class="ui large list">
           \{{#each this.missedIngredients}}
           <div class="item">\{{this.name}}</div>
@@ -68,13 +69,54 @@
           </span>
         </div>
       </div>
+
+
+      <div class="ui modal test">
+        <i class="close icon"></i>
+        <div class="header">
+          \{{title}}
+        </div>
+        <div class="ui three column grid">
+          <div class="column">
+            <div class="image content">
+              <div class="ui medium image">
+                <img src="\{{image}}">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui large list">
+              \{{#each this.missedIngredients}}
+              <div class="item">\{{this.name}}</div>
+              \{{/each}}
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui large list">
+              \{{#each this.usedIngredients}}
+              <div class="item">\{{this.name}}</div>
+              \{{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui black deny button">
+            Go Back
+          </div>
+          <button class="ui button"><i class="shop icon"></i>Add to Cart</button>
+          <span class="right floated">
+        </div>
+      </div>
+
+
+
       <div class="extra content">
         <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
         <span class="right floated">
   <!-- ** rebound.js "sourceUrl" -->
-              <button class="mini ui button"><i class="external square icon blue"></i><a
-                href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-            </span>
+          <button class="mini ui button"><i class="external square icon blue"></i><a
+            href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
+          </span>
       </div>
     </div>
   </div>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Semantic UI CDN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"/>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+    <div class="ui container">
+      <div class="ui secondary pointing menu">
+        <a class="item" href="index.html">
+          <i class="cube icon"></i>
+          Refrigerecipe
+        </a>
+        <a class="item" href="./ingredients.html">
+          Fridge
+        </a>
+        <a class="item" href="./recipes.html">
+          Recipes
+        </a>
+        <div class="right menu">
+          <a class="ui item" href="./cart.html">
+            <i class="shop icon"></i>
+            Cart
+          </a>
+          <a class="active ui item" href="./login.html">
+            Login
+          </a>
+        </div>
+      </div>
+
+  <!--  LOGIN -->
+
+      <div class="ui middle aligned center aligned grid">
+        <div class="column login">
+          <h2 class="ui header">
+            <div class="ui horizontal divider">
+              Sign up with your peapod account
+            </div>
+          </h2>
+          <form class="ui large form">
+            <div class="ui segment">
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" name="email" placeholder="E-mail address">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="password" placeholder="Password">
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password" name="confirm" placeholder="Confirm Password">
+                </div>
+              </div>
+              <div class="ui fluid large submit button">Sign Up</div>
+            </div>
+            <div class="ui error message"></div>
+          </form>
+          <div class="ui message">
+            Already ha <a href="#">Sign Up</a>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+</body>
+</html>
