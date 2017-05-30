@@ -1,6 +1,5 @@
 "use strict";
 var express = require("express");
-var unirest = require('unirest');
 var axios = require('axios');
 var _ = require('underscore');
 
