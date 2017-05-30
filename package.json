@@ -19,10 +19,13 @@
     "karma-mocha": "^1.1.1",
     "karma-mocha-reporter": "^2.2.1",
     "watchify": "^3.7.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "axios": "0.16.1"
   },
   "devDependencies": {
-    "handlebars-helper-css": "^0.1.0"
+    "chai": "^3.5.0",
+    "handlebars-helper-css": "^0.1.0",
+    "mocha": "^3.4.2"
   },
   "name": "refrigercipe",
   "description": "find out what you can cook based on what you got in the fridge.",
