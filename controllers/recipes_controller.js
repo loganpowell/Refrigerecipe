@@ -20,24 +20,6 @@ module.exports = function (app) {
     var user_id = 1;
     var fridge_url = "/fridge/1";
 
-    //todo: get the real fridge content
-    //   axios.get(fridge_url, {
-    //     headers: {
-    //       "Accept":"application/json"
-    //     }
-    //   })
-    //     .then(function(resp) {
-    //       var fridge_contents = _.pick(resp.data, "ingredients");
-    //       fridge_contents = fridge_contents.map(function(elem) {
-    //         return elem.ingredient;
-    //       });
-    //       return fridge_contents
-    //     })
-    //     .then(function(fridge_contents) {
-    //       console.log(fridge_contents)
-    //     })
-    // })
-
     fridges.findById(fridge_id)
       .then(function (data) {
         // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
@@ -60,6 +42,7 @@ module.exports = function (app) {
         return [];
       })
       .then(function(ingredients) {
+        console.log("requested ingredients: " + JSON.stringify(ingredients));
         return axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients",
           {
             headers: {
