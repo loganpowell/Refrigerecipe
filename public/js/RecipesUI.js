@@ -32,7 +32,9 @@ RecipesUI.prototype.displayAllRecipes = function(resp) {
   var html = template(recipes);
   console.log(html);
   $("#recipes-list-div").append(html);
-
+  $(".popper").click(function(){
+    $(this).siblings(".ui.modal.test").modal('show');
+  });
 };
 
 RecipesUI.prototype.setUpTab = function() {
@@ -45,6 +47,12 @@ window.onload = function() {
   window.recipesUI.getAllRecipes()
     .then(window.recipesUI.displayAllRecipes)
     .then(RecipesUI.prototype.setUpTab);
-
 };
 
+{/* <script>
+$(document).ready(function() {
+  $("#test").click(function(){
+    $(this).siblings().modal('show');
+  });
+})
+</script> */}

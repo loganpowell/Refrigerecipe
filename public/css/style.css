@@ -22,6 +22,10 @@ body > .grid {
   font-weight: lighter;
 }
 
+.popper > h4 {
+  cursor: pointer;
+}
+
 /*CARDS*/
 
 
