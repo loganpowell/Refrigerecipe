@@ -1,7 +1,9 @@
 "use strict";
 var express = require("express");
 var axios = require('axios');
+var db = require("../models");
 var _ = require('underscore');
+var fridges = db.fridges;
 
 module.exports = function (app) {
   app.get("/recipes", function (req, res) {
@@ -13,8 +15,8 @@ module.exports = function (app) {
     // express callback response by calling burger.selectAllBurger
     // res.render("recipes", {});
     //todo: replace the other parametes with real data.
-    var ingredients = ["chicken", "beef", "flour", "eggs", "milk"];
-    var fridge_id = parseInt(req.params.id, 10);
+    // var fridge_id = parseInt(req.params.id, 10);
+    var fridge_id = 1;
     var user_id = 1;
     var fridge_url = "/fridge/1";
 
@@ -36,21 +38,44 @@ module.exports = function (app) {
     //     })
     // })
 
-    axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients",
-      {
-        headers: {
-          "X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn",
-          "Accept": "application/json"
-        },
-        params: {
-          "fillIngredients": "true",
-          // "ingredients": ["apples","flour","sugar"].join(","),
-          "ingredients": ingredients.join(","),
-          "limitLicense": "false",
-          "number": "5",
-          "ranking": "1"
+    fridges.findById(fridge_id)
+      .then(function (data) {
+        // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
+        if (!!data) {
+          var resData = _.pick(data, "id", "fridge_name", "user_id", "ingredients");
+          resData.ingredients = JSON.parse(resData.ingredients);
+          var ingredients = resData.ingredients.map(function(elem) {
+            return elem.ingredient;
+          });
+          console.log(ingredients);
+          return ingredients;
+        }else {
+          //todo: throw error
+          return [];
         }
+      }
+      //todo: research how to properly handle errors.
+      ,function(err) {
+        //todo: throw error
+        return [];
+      })
+      .then(function(ingredients) {
+        return axios.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients",
+          {
+            headers: {
+              "X-Mashape-Key": "PUkQ3poysFmsheozAr97ixdGtaG5p1Gf87kjsnzDPLfDddaOJn",
+              "Accept": "application/json"
+            },
+            params: {
+              "fillIngredients": "true",
+              // "ingredients": ["apples","flour","sugar"].join(","),
+              "ingredients": ingredients.join(","),
+              "limitLicense": "false",
+              "number": "5",
+              "ranking": "1"
+            }
 
+          });
       })
       .then(function (response) {
         //console.log(response.status, response.headers);
@@ -67,8 +92,7 @@ module.exports = function (app) {
       .then(function (filtered_data) {
         console.log(filtered_data);
         res.json(filtered_data);
-      })
-
+      });
   });
 
   //get the recipe detail from /recipes/:id endpoint
