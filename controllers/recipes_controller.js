@@ -54,7 +54,7 @@ module.exports = function (app) {
               // "ingredients": ["apples","flour","sugar"].join(","),
               "ingredients": ingredients.join(","),
               "limitLicense": "false",
-              "number": "5",
+              "number": "20",
               "ranking": "1"
             }
 
