@@ -61,7 +61,6 @@ module.exports = function (app) {
           });
       })
       .then(function (response) {
-        //console.log(response.status, response.headers);
         //console.log(response.data);
         //filter the response data to the bare essentials, name, id, units, and pictures
         var filtered_data = response.data.map(function (recipe) {
@@ -73,13 +72,13 @@ module.exports = function (app) {
         return filtered_data;
       })
       .then(function (filtered_data) {
-        console.log(filtered_data);
+        //console.log(filtered_data);
         res.json(filtered_data);
       });
   });
 
   //get the recipe detail from /recipes/:id endpoint
-  //by default return the json format.
+  //based on the format given the request, respond in kind
   // https://stackoverflow.com/questions/8928738/in-express-js-any-way-to-capture-request-to-both-json-and-html-in-one-function
   app.get("/recipes/:id", function (req, res) {
     var recipeId = parseInt(req.params.id, 10);
