@@ -46,7 +46,7 @@ window.onload = function() {
 
   window.recipesUI.getAllRecipes()
     .then(window.recipesUI.displayAllRecipes)
-    .then(RecipesUI.prototype.setUpTab);
+    .then(window.recipesUI.setUpTab);
 };
 
 {/* <script>
