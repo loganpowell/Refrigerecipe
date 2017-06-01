@@ -71,7 +71,7 @@ module.exports = function (app) {
       .then(function(fridge) {
         if(fridge) {
           //todo: enable authorization check based on user_id
-          var updateAttributes = _.pick(req.body, "fridge_name", "user_id", "ingredients");
+          var updateAttributes = _.pick(req.body, "fridge_name", "ingredients");
           updateAttributes.ingredients = JSON.stringify(updateAttributes.ingredients);
           fridge.update(updateAttributes)
             .then(function(fridge) {

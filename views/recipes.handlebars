@@ -1,233 +1,124 @@
-<h2 class="ui header">
-  <div class="ui horizontal divider">
-    Let's see what's possible
+<div class="ui container">
+  <div class="ui secondary pointing menu">
+    <a class="item" href="/">
+      <i class="cube icon"></i>
+      Refrigerecipe
+    </a>
+    <a class="item" href="./fridge">
+      Fridge
+    </a>
+    <a class="active item" href="./recipes">
+      Recipes
+    </a>
+    <div class="right menu">
+      <a class="ui item" href="./cart">
+        <i class="shop icon"></i>
+        Cart
+      </a>
+      <a class="ui item" href="./login">
+        Login
+      </a>
+    </div>
   </div>
-</h2>
+  <h2 class="ui header">
+    <div class="ui horizontal divider">
+      Let's see what's possible
+    </div>
+  </h2>
 
-<!-- ** (asteriscs) NEED A SEPARATE API REQUEST FOR THIS... See rebound.js -->
+  <!-- ** (asteriscs) NEED A SEPARATE API REQUEST FOR THIS... See rebound.js -->
 
-<!-- RECIPE CARDS -->
-<div class="ui three column doubling stackable masonry grid">
+  <!-- RECIPE CARDS -->
+  <div id="recipes-list-div" class="ui three column doubling stackable masonry grid">
 
-  <!-- CARD WITH API REFERENCES -->
-  <div class="column">
+
+  </div>
+</div>
+
+
+<script src="js/RecipesUI.js"></script>
+
+<script id="recipe-card-template" type="text/x-handlebars-template">
+  <!-- recipe handlebar card -->
+  \{{#each recipes}}
+  <div id="recipe-\{{id}}" class="column" data=\{{id}}>
     <div class="ui fluid card">
       <div class="content">
         <!-- response.js "title" -->
-        <div class="header">Guy's Kickin' Quesadilla</div>
+        <div class="header">\{{title}}</div>
       </div>
       <!-- response.js "image" -->
       <div class="image">
-        <img src="https://spoonacular.com/recipeImages/guys-kickin-quesadilla-746199.jpeg">
+        <img src="\{{image}}">
       </div>
-      <div class="content">
+      <div class="content popper">
         <h4 class="ui sub header">Missing Ingredients</h4>
+
         <div class="ui large list">
-          <!-- response.js "missedIngredients": [{ "name" }] -->
-          <div class="item">whole wheat tortillas</div>
-          <div class="item">potatoes</div>
-          <div class="item">roasted red bell peppers</div>
-          <div class="item">artichoke hearts</div>
-          <div class="item">cooked corn kernels</div>
-          <div class="item">black olives</div>
-          <div class="item">carrots</div>
+          \{{#each this.missedIngredients}}
+          <div class="item">\{{this.name}}</div>
+          \{{/each}}
         </div>
         <div class="content">
           <i class="heart outline like icon"></i>
           <!-- response.js "likes" -->
-          606
+          \{{likes}}
           <span class="right floated">
-<!-- ** rebound.js "vegetarian" -->
-              <i class="leaf icon"></i>
-            </span>
+            <!-- make the vegetarian thing as a filter -->
+            <i class="leaf icon"></i>
+          </span>
         </div>
       </div>
+
+
+      <div class="ui modal test">
+        <i class="close icon"></i>
+        <div class="header">
+          \{{title}}
+        </div>
+        <div class="ui three column grid">
+          <div class="column">
+            <div class="image content">
+              <div class="ui medium image">
+                <img src="\{{image}}">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui large list">
+              \{{#each this.missedIngredients}}
+              <div class="item">\{{this.name}}</div>
+              \{{/each}}
+            </div>
+          </div>
+          <div class="column">
+            <div class="ui large list">
+              \{{#each this.usedIngredients}}
+              <div class="item">\{{this.name}}</div>
+              \{{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui black deny button">
+            Go Back
+          </div>
+          <button class="ui button"><i class="shop icon"></i>Add to Cart</button>
+          <span class="right floated">
+        </div>
+      </div>
+
+
+
       <div class="extra content">
         <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
         <span class="right floated">
-<!-- ** rebound.js "sourceUrl" -->
-            <button class="mini ui button"><i class="external square icon blue"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
+  <!-- ** rebound.js "sourceUrl" -->
+          <button class="mini ui button"><i class="external square icon blue"></i><a
+            href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
           </span>
       </div>
     </div>
   </div>
-
-
-  <!-- CARD 2 -->
-  <div class="column">
-    <div class="ui fluid card">
-      <div class="content">
-        <div class="header">Udon Noodle Wok with Peanut Sauce</div>
-      </div>
-      <div class="image">
-        <img src="https://spoonacular.com/recipeImages/udon-noodle-wok-with-peanut-sauce-591186.jpg">
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">Missing Ingredients</h4>
-        <div class="ui large list">
-          <div class="item">baby corns</div>
-          <div class="item">bamboo shoots</div>
-          <div class="item">bean sprouts</div>
-          <div class="item">broccoli florets</div>
-          <div class="item">carrots</div>
-        </div>
-        <div class="content">
-          <i class="heart outline like icon"></i>
-          164
-        </div>
-      </div>
-      <div class="extra content">
-        <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
-        <span class="right floated">
-            <button class="mini ui button"><i class="external square icon"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-          </span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- CARD 3 -->
-  <div class="column">
-    <div class="ui fluid card">
-      <div class="content">
-        <div class="header">Corn & Broccoli Bakee</div>
-      </div>
-      <div class="image">
-        <img src="https://spoonacular.com/recipeImages/corn-broccoli-bake-2-109615.jpg">
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">Missing Ingredients</h4>
-        <div class="ui large list">
-          <div class="item">canned corn</div>
-        </div>
-        <div class="content">
-          <i class="heart outline like icon"></i>
-          164
-        </div>
-      </div>
-      <div class="extra content">
-        <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
-        <span class="right floated">
-            <button class="mini ui button"><i class="external square icon"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-          </span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- CARD 4 -->
-  <div class="column">
-    <div class="ui fluid card">
-      <div class="content">
-        <div class="header">KRAFT MAKERS Asian-Style Chili Steak & String Beans</div>
-      </div>
-      <div class="image">
-        <img src="https://spoonacular.com/recipeImages/kraft-makers-asian-style-chili-steak-string-beans-276101.jpg">
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">Missing Ingredients</h4>
-        <div class="ui large list">
-          <div class="item">baby corns</div>
-          <div class="item">bamboo shoots</div>
-          <div class="item">bean sprouts</div>
-          <div class="item">broccoli florets</div>
-          <div class="item">carrots</div>
-          <div class="item">bamboo shoots</div>
-          <div class="item">bean sprouts</div>
-          <div class="item">broccoli florets</div>
-          <div class="item">carrots</div>
-        </div>
-        <div class="content">
-          <i class="heart outline like icon"></i>
-          164
-        </div>
-      </div>
-      <div class="extra content">
-        <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
-        <span class="right floated">
-            <button class="mini ui button"><i class="external square icon"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-          </span>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- CARD 5 -->
-  <div class="column">
-    <div class="ui fluid card">
-      <div class="content">
-        <div class="header">Chicken Pasta Salad with Roasted Red Pepper Dressing</div>
-      </div>
-      <div class="image">
-        <img src="https://spoonacular.com/recipeImages/chicken-pasta-salad-with-roasted-red-pepper-dressing-161183.jpg">
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">Missing Ingredients</h4>
-        <div class="ui large list">
-          <div class="item">baby corns</div>
-          <div class="item">bamboo shoots</div>
-          <div class="item">bean sprouts</div>
-          <div class="item">broccoli florets</div>
-          <div class="item">carrots</div>
-        </div>
-        <div class="content">
-          <i class="heart outline like icon"></i>
-          164
-        </div>
-      </div>
-      <div class="extra content">
-        <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
-        <span class="right floated">
-            <button class="mini ui button"><i class="external square icon"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-          </span>
-      </div>
-    </div>
-  </div>
-
-  <!-- CARD 6 -->
-  <div class="column">
-    <div class="ui fluid card">
-      <div class="content">
-        <div class="header">Spicy Broccoli Salad</div>
-      </div>
-      <div class="image">
-        <img src="https://spoonacular.com/recipeImages/spicy-broccoli-salad-2-96085.jpg">
-      </div>
-      <div class="content">
-        <h4 class="ui sub header">Missing Ingredients</h4>
-        <div class="ui large list">
-          <div class="item">baby corns</div>
-          <div class="item">bamboo shoots</div>
-          <div class="item">bean sprouts</div>
-          <div class="item">broccoli florets</div>
-          <div class="item">carrots</div>
-        </div>
-        <div class="content">
-          <i class="heart outline like icon"></i>
-          164
-        </div>
-      </div>
-      <div class="extra content">
-        <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
-        <span class="right floated">
-            <button class="mini ui button"><i class="external square icon"></i><a
-              href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
-          </span>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-<!-- CARD ACTION -->
-<script>
-  $(document).ready(function () {
-    $('.menu .item').tab();
-  });
+  \{{/each}}
 </script>
