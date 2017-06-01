@@ -36,6 +36,7 @@ require("./controllers/fridges_controller")(app);
 require("./controllers/recipes_controller")(app);
 require("./controllers/cart_controller")(app);
 require("./controllers/login_controller")(app);
+require("./controllers/index_controller")(app);
 
 
 var PORT = process.env.PORT || 3000;
