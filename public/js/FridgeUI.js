@@ -40,11 +40,19 @@ FridgeUI.prototype.getFridgeIngredients = function () {
         .done(function(response) {
           var ingredient_data = _.pick(response, 'ingredients');
           this.ingredients = ingredient_data["ingredients"];
-          this.ingredients = this.ingredients.map(function(elem) {
-            elem['index'] = this.counter;
+          // this.ingredients = this.ingredients.map(function(elem) {
+          //   elem['index'] = this.counter;
+          //   this.counter ++;
+          //   return {index: counter, ingredient: elem.ingred};
+          // }.bind(this));
+          var newArray = [];
+          for (var i=0; i<this.ingredients.length; i++) {
+            this.ingredients[i]['index'] = this.counter;
             this.counter ++;
-            return elem;
-          }.bind(this));
+            newArray.push(this.ingredients[i]);
+          }
+          //this line to get around the weird Object/array problem that comes with ajax.
+          this.ingredients = newArray;
           resolve();
         }.bind(this))
         .fail(function(err) {
@@ -133,6 +141,11 @@ FridgeUI.prototype.putFridgeIngredients = function() {
     {"ingredient": "Salmon", "servings_count": 1},
     {"ingredient": "Bread", "servings_count": 1}
     ];
+
+  putDataIngredients = this.ingredients.map(
+    function(elem) {
+      return _.pick(elem, "ingredient", "servings_count");
+  });
   var putData = {
     "ingredients": putDataIngredients,
     "fridge_name": "Happy Fridge"
@@ -141,7 +154,9 @@ FridgeUI.prototype.putFridgeIngredients = function() {
   $.ajax( {
     url: queryURL,
     method:"PUT",
-    data: putData
+    processData: false,
+    contentType: 'application/json',
+    data: JSON.stringify(putData)
   })
     .done(function(response) {
       console.log(response);

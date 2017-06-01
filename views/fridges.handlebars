@@ -1,40 +1,62 @@
-<div class="ui middle aligned center aligned grid">
-  <div class="column ingredients">
-    <h2 class="ui header">
-      <div class="ui horizontal divider">
-        What's in the fridge?
-      </div>
-    </h2>
-    <!-- SECONDARY TOGGLE ALL MENU -->
-    <div class="ui mini menu">
-      <div class="item">
-        <div class="ui uncheck button align right">All Gone</div>
-      </div>
-      <div class="right menu">
+<div class="ui container">
+  <div class="ui secondary pointing menu">
+    <a class="item" href="/">
+      <i class="cube icon"></i>
+      Refrigerecipe
+    </a>
+    <a class="active item" href="./fridge">
+      Fridge
+    </a>
+    <a class="item" href="./recipes">
+      Recipes
+    </a>
+    <div class="right menu">
+      <a class="ui item" href="./cart">
+        <i class="shop icon"></i>
+        Cart
+      </a>
+      <a class="ui item" href="./login">
+        Login
+      </a>
+    </div>
+  </div>
+  <div class="ui middle aligned center aligned grid">
+    <div class="column ingredients">
+      <h2 class="ui header">
+        <div class="ui horizontal divider">
+          What's in the fridge?
+        </div>
+      </h2>
+      <!-- SECONDARY TOGGLE ALL MENU -->
+      <div class="ui mini menu">
         <div class="item">
-          <div class="ui check button blue">Refresh All</div>
+          <div class="ui uncheck button align right">All Gone</div>
+        </div>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui check button blue">Refresh All</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- ADD INGREDIENT -->
+      <!-- ADD INGREDIENT -->
 
-    <div class="ui big fluid labeled left icon action input">
-      <input id="new_ingredient_entry" type="text" placeholder="Add Ingredient">
-      <i class="shopping basket icon"></i>
-      <button id="new_ingredient_btn" class="ui icon button blue">
-        <i class="check icon"></i>
-      </button>
-    </div>
+      <div class="ui big fluid labeled left icon action input">
+        <input id="new_ingredient_entry" type="text" placeholder="Add Ingredient">
+        <i class="shopping basket icon"></i>
+        <button id="new_ingredient_btn" class="ui icon button blue">
+          <i class="check icon"></i>
+        </button>
+      </div>
 
-    <!-- ADDED INGREDIENTS -->
-    <div id="ingredient-list-div" class="ui big relaxed divided list">
-      <!-- INGREDIENT -->
+      <!-- ADDED INGREDIENTS -->
+      <div id="ingredient-list-div" class="ui big relaxed divided list">
+        <!-- INGREDIENT -->
 
+      </div>
     </div>
   </div>
 </div>
-
 
 <script id="fridge-ingredient-template" type="text/x-handlebars-template">
   <!-- INGREDIENT -->
@@ -56,7 +78,6 @@
   </div>
   \{{/each}}
 </script>
-
 
 
 <script src="js/FridgeUI.js"></script>
