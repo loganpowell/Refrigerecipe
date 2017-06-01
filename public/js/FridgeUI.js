@@ -101,6 +101,7 @@ FridgeUI.prototype.setRemoveIngredientBtnHandlers = function() {
   $('.remove_ingredient_button').click(this.removeIngredientBtnHandler.bind(this));
 };
 
+
 FridgeUI.prototype.removeIngredientBtnHandler = function(event) {
   var eventTarget = $(event.target);
   //console.log(eventTarget);
