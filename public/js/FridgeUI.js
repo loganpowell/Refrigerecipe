@@ -98,14 +98,14 @@ FridgeUI.prototype.setIngredientOnOffButtonHandlers = function() {
 };
 
 FridgeUI.prototype.setRemoveIngredientBtnHandlers = function() {
-  $('.remove_ingredient_button').click(this.removeIngredientBtnHandler.bind(this));
+  $("button.remove_ingredient_button").click(this.removeIngredientBtnHandler.bind(this));
 };
 
 
 FridgeUI.prototype.removeIngredientBtnHandler = function(event) {
   var eventTarget = $(event.target);
   //console.log(eventTarget);
-  var itemEntryAncestor = eventTarget.parent().parent().parent();
+  var itemEntryAncestor = eventTarget.closest('.item');
   var ingredientIndex = itemEntryAncestor.attr('index');
   ingredientIndex = parseInt(ingredientIndex, 10);
   console.log("ingredientIndex: " + ingredientIndex);
@@ -113,9 +113,10 @@ FridgeUI.prototype.removeIngredientBtnHandler = function(event) {
   if (indexForRemoval !== -1) {
     //found the correct element
     this.ingredients.splice(indexForRemoval, 1);
+    console.log(this.ingredients);
+    itemEntryAncestor.remove();
   }
-  console.log(this.ingredients);
-  itemEntryAncestor.remove();
+
 
   //todo: add Ajax update.
 };
