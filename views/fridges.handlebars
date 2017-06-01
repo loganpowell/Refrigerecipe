@@ -20,9 +20,9 @@
     <!-- ADD INGREDIENT -->
 
     <div class="ui big fluid labeled left icon action input">
-      <input type="text" placeholder="Add Ingredient">
+      <input id="new_ingredient_entry" type="text" placeholder="Add Ingredient">
       <i class="shopping basket icon"></i>
-      <button class="ui icon button blue">
+      <button id="new_ingredient_btn" class="ui icon button blue">
         <i class="check icon"></i>
       </button>
     </div>
@@ -30,21 +30,6 @@
     <!-- ADDED INGREDIENTS -->
     <div id="ingredient-list-div" class="ui big relaxed divided list">
       <!-- INGREDIENT -->
-      <div class="item">
-        <div class="left floated content">
-          <div class="ui toggle checkbox middle aligned">
-            <input type="checkbox" checked="checked">
-          </div>
-        </div>
-        <div class="left floated content">
-          <h3>Brocolli</h3>
-        </div>
-        <div class="right floated content">
-          <button class="compact mini ui icon button black">
-            <i class="trash icon"></i>
-          </button>
-        </div>
-      </div>
 
     </div>
   </div>
@@ -54,7 +39,7 @@
 <script id="fridge-ingredient-template" type="text/x-handlebars-template">
   <!-- INGREDIENT -->
   \{{#each ingredients}}
-    <div class="item">
+    <div class="item" data="\{{data}}">
       <div class="left floated content">
         <div class="ui toggle checkbox middle aligned">
           <input type="checkbox" checked="checked">
@@ -64,8 +49,8 @@
         <h3>\{{ingredient}}</h3>
       </div>
       <div class="right floated content">
-        <button class="compact mini ui icon button black">
-          <i class="trash icon"></i>
+        <button class="compact mini ui icon button black remove_ingredient_button">
+          <i class="trash icon "></i>
         </button>
       </div>
     </div>
