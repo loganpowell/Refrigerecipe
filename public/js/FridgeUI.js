@@ -4,6 +4,7 @@ function FridgeUI() {
   this.user_id = "";
   //todo change this thing
   this.id = 1;
+  this.counter = 1;
 }
 //example output from ajax query
 // Object {id: 1, fridge_name: "Happy Fridge", user_id: 1, ingredients: Array(5)}
@@ -39,6 +40,11 @@ FridgeUI.prototype.getFridgeIngredients = function () {
         .done(function(response) {
           var ingredient_data = _.pick(response, 'ingredients');
           this.ingredients = ingredient_data["ingredients"];
+          this.ingredients = this.ingredients.map(function(elem) {
+            elem['index'] = this.counter;
+            this.counter ++;
+            return elem;
+          }.bind(this));
           resolve();
         }.bind(this))
         .fail(function(err) {
@@ -79,22 +85,47 @@ FridgeUI.prototype.addNewIngredientBtnClick = function() {
   console.log(ingredient_name);
 
   this.displayFridgeIngredients();
-  this.addIngredientOnOffButton();
+  this.setIngredientOnOffButtonHandlers();
 
 };
 
-FridgeUI.prototype.addIngredientOnOffButton = function() {
+FridgeUI.prototype.setIngredientOnOffButtonHandlers = function() {
   $('.checkbox').checkbox('attach events', '.check.button', 'check');
   $('.checkbox').checkbox('attach events', '.uncheck.button', 'uncheck');
+
+  //rewrite the check box handler
+  //todo write Ajax data update
+};
+
+FridgeUI.prototype.setRemoveIngredientBtnHandlers = function() {
+  $('.remove_ingredient_button').click(this.removeIngredientBtnHandler.bind(this));
+};
+
+FridgeUI.prototype.removeIngredientBtnHandler = function(event) {
+  var eventTarget = $(event.target);
+  //console.log(eventTarget);
+  var itemEntryAncestor = eventTarget.parent().parent().parent();
+  var ingredientIndex = itemEntryAncestor.attr('index');
+  ingredientIndex = parseInt(ingredientIndex, 10);
+  console.log("ingredientIndex: " + ingredientIndex);
+  var indexForRemoval  = _.indexOf(this.ingredients, _.findWhere(this.ingredients, { index : ingredientIndex}));
+  if (indexForRemoval !== -1) {
+    //found the correct element
+    this.ingredients.splice(indexForRemoval, 1);
+  }
+  console.log(this.ingredients);
+  itemEntryAncestor.remove();
+
+  //todo: add Ajax update.
 };
 
 
 
-FridgeUI.prototype.putFridgeIngredients = function(id, data) {
+FridgeUI.prototype.putFridgeIngredients = function(fridgeId, data) {
   //assume fridge id is still 1
   //todo wire up fridge ID, finish this
-  var queryURL=  "/fridge/1";
-  var putParams = _.pick(data, "fridge_name", "user_id", "ingredients");
+  var queryURL=  "/fridge/"+ fridgeId;
+  var putParams = _.pick(data, "fridge_name", "ingredients");
   $.ajax( {
     url: queryURL,
     method:"PUT"
@@ -109,6 +140,7 @@ window.onload = function() {
   //window.fridgeUI.getFridgeIngredients(1);
   window.fridgeUI.getFridgeIngredients()
     .then(window.fridgeUI.displayFridgeIngredients.bind(window.fridgeUI))
-    .then(window.fridgeUI.addIngredientOnOffButton);
+    .then(window.fridgeUI.setIngredientOnOffButtonHandlers.bind(window.fridgeUI))
+    .then(window.fridgeUI.setRemoveIngredientBtnHandlers.bind(window.fridgeUI));
   //templatingTest();
 };
