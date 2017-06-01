@@ -117,21 +117,36 @@ FridgeUI.prototype.removeIngredientBtnHandler = function(event) {
     itemEntryAncestor.remove();
   }
 
-
   //todo: add Ajax update.
+  this.putFridgeIngredients();
 };
 
 
 
-FridgeUI.prototype.putFridgeIngredients = function(fridgeId, data) {
+FridgeUI.prototype.putFridgeIngredients = function() {
   //assume fridge id is still 1
   //todo wire up fridge ID, finish this
-  var queryURL=  "/fridge/"+ fridgeId;
-  var putParams = _.pick(data, "fridge_name", "ingredients");
+  var queryURL=  "/fridge/"+ this.id;
+
+  var putDataIngredients = [
+    {"ingredient": "Beef Chop", "servings_count": 1},
+    {"ingredient": "Salmon", "servings_count": 1},
+    {"ingredient": "Bread", "servings_count": 1}
+    ];
+  var putData = {
+    "ingredients": putDataIngredients,
+    "fridge_name": "Happy Fridge"
+  };
+
   $.ajax( {
     url: queryURL,
-    method:"PUT"
+    method:"PUT",
+    data: putData
   })
+    .done(function(response) {
+      console.log(response);
+
+    });
 };
 
 
