@@ -76,32 +76,7 @@ FridgeUI.prototype.putFridgeIngredients = function(id, data) {
   })
 };
 
-const templatingTest = function() {
-  // var data =
-  //   {
-  //     items:
-  //     [
-  //       {item:"shit", servings_count: 2},
-  //       {item:"shit2", servings_count: 3}
-  //     ]
-  // };
-  var data = {ingredients: [
-    {
-      ingredient: "Chicken",
-      servings_count: 20
-    },
-    {
-      ingredient: "Eggs",
-      servings_count: 2
-    }
-  ]};
 
-
-  var source = $("#fridge-ingredient-template").html();
-  var template =Handlebars.compile(source);
-  var html = template(data);
-  console.log(html);
-};
 window.onload = function() {
   window.fridgeUI = new FridgeUI();
   window.fridgeUI.id = 1;
