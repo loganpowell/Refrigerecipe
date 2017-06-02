@@ -9,28 +9,20 @@ function CartUI() {
 
 //this function takes the resposne from JSON api /fridge/:id
 // and feed it to the next function.
-CartUI.prototype.getFridgeIngredients = function () {
-  var fridgeId = this.id;
+CartUI.prototype.getCartIngredients = function () {
   return new Promise(
     function (resolve, reject) {
-      //todo: resolve this id issue.
-      var this_id = this.id;
-      console.log("Fridge id: " + fridgeId);
 
       //todo: modify the fridge ID
-      var queryURL = "/fridge/" + fridgeId;
+      var queryURL = "/cart";
       $.ajax({
         url: queryURL,
-        method: "GET"
+        method: "GET",
+        dataType: 'json'
       })
         .done(function (response) {
           var ingredient_data = _.pick(response, 'ingredients');
           this.ingredients = ingredient_data["ingredients"];
-          // this.ingredients = this.ingredients.map(function(elem) {
-          //   elem['index'] = this.counter;
-          //   this.counter ++;
-          //   return {index: counter, ingredient: elem.ingred};
-          // }.bind(this));
           var newArray = [];
           for (var i = 0; i < this.ingredients.length; i++) {
             this.ingredients[i]['index'] = this.counter;
@@ -50,13 +42,13 @@ CartUI.prototype.getFridgeIngredients = function () {
 };
 
 //this function will display CartUI object's ingredient data.
-CartUI.prototype.displayFridgeIngredients = function () {
+CartUI.prototype.displayCartIngredients = function () {
   //console.log(resp);
   //var ingredient_data = _.pick(resp, 'ingredients');
   //this.ingredients = ingredient_data["ingredients"];
   console.log(this.ingredients);
   //console.log(ingredient_data);
-  var source = $("#fridge-ingredient-template").html();
+  var source = $("#cart-ingredient-template").html();
   var template = Handlebars.compile(source);
   var html = template({"ingredients": this.ingredients});
   console.log(html);
@@ -157,9 +149,9 @@ window.onload = function () {
   window.CartUI = new CartUI();
 
   // $(CartUI.NEW_INGREDIENT_CHECK_BTN_ID).click(window.CartUI.addNewIngredientBtnClick.bind(window.CartUI));
-  // //window.CartUI.getFridgeIngredients(1);
-  // window.CartUI.getFridgeIngredients()
-  //   .then(window.CartUI.displayFridgeIngredients.bind(window.CartUI))
+  ////window.CartUI.getCartIngredients();
+  window.CartUI.getCartIngredients()
+    .then(window.CartUI.displayCartIngredients.bind(window.CartUI))
   //   .then(window.CartUI.setIngredientOnOffButtonHandlers.bind(window.CartUI))
   //   .then(window.CartUI.setRemoveIngredientBtnHandlers.bind(window.CartUI));
   // //templatingTest();

@@ -8,7 +8,27 @@ var carts = db.carts;
 module.exports = function (app) {
     app.get("/cart", function(req, res) {
         // express callback response by calling burger.selectAllBurger
-        res.render("cart", {});
+      res.format({
+        'text/html': function () {
+          res.render("cart", {});
+        },
+        'application/json': function () {
+          var cart_id = 1;
+          carts.findById(cart_id)
+            .then(function (data) {
+              // Wrapping the array of returned burgers in a object so it can be referenced inside our handlebars
+              if (!!data) {
+                var resData = _.pick(data, "id", "cart_name", "user_id", "ingredients");
+                resData.ingredients = JSON.parse(resData.ingredients);
+                res.json(resData);
+              }else {
+                res.status(404).send();
+              }
+            }, function(err) {
+              res.status(500).send(err);
+            });
+        }
+      });
     });
 
     app.put("/cart/add", function(req, res) {
