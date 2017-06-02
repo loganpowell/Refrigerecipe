@@ -26,6 +26,18 @@ body > .grid {
   cursor: pointer;
 }
 
+.ui.blue.right.ribbon.label {
+  margin-left: -79px;
+  /*margin-top: -20px;*/
+}
+
+.ui.three.statistics {
+  margin: 10px 0 5px;
+}
+
+.ui.items {
+  margin: 0;
+}
 /*CARDS*/
 
 

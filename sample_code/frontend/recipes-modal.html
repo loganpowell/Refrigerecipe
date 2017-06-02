@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Refrigerecipe: Lazy -> Healthy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <link rel="stylesheet" href="../../public/css/style.css">
+</head>
+<body>
+  <div class="ui container">
+    <div class="ui secondary pointing menu">
+      <a class="item" href="/">
+        <i class="cube icon"></i>
+        Refrigerecipe
+      </a>
+      <a class="item" href="./fridge">
+        Fridge
+      </a>
+      <a class="active item" href="./recipes">
+        Recipes
+      </a>
+      <div class="right menu">
+        <a class="ui item" href="./cart">
+          <i class="shop icon"></i>
+          Cart
+        </a>
+        <a class="ui item" href="./login">
+          Login
+        </a>
+      </div>
+    </div>
+    <h2 class="ui header">
+      <div class="ui horizontal divider">
+        Let's see what's possible
+      </div>
+    </h2>
+
+    <!-- ** (asteriscs) NEED A SEPARATE API REQUEST FOR THIS... See rebound.js -->
+
+    <!-- RECIPE CARDS -->
+    <div id="recipes-list-div" class="ui three column doubling stackable masonry grid">
+
+
+
+    <!-- recipe handlebar card -->
+    <div id="recipe-209849" class="column" data="209849">
+      <div class="ui fluid card">
+        <div class="content">
+          <!-- response.js "title" -->
+          <div class="header">Fudgy dark chocolate cake</div>
+        </div>
+        <!-- response.js "image" -->
+        <div class="image">
+          <img src="https://spoonacular.com/recipeImages/Fudgy-dark-chocolate-cake-209849.jpg">
+        </div>
+        <div class="content popper">
+          <h4 class="ui sub header">Missing Ingredients</h4>
+
+          <div class="ui large list">
+            <div class="item">baking powder</div>
+            <div class="item">butter</div>
+            <div class="item">dark chocolate</div>
+            <div class="item">double cream</div>
+            <div class="item">Top Sirloin</div>
+          </div>
+          <div class="content">
+            <i class="heart outline like icon"></i>
+            <!-- response.js "likes" -->
+            294
+            <span class="right floated">
+              <!-- make the vegetarian thing as a filter -->
+              <!-- <i class="leaf icon"></i> -->
+            </span>
+          </div>
+        </div>
+
+        <div class="ui modal test">
+          <i class="close icon"></i>
+          <div class="header">
+            TITLE
+<!-- rebound.vegetarian: true -->
+              <i class="leaf icon"></i>
+            <div class="ui blue right ribbon label">
+<!-- rebound.servings: 2 -->
+              <i class="spoon icon"></i> 2
+            </div>
+          </div>
+
+          <div class="ui three statistics">
+            <div class="ui statistic">
+              <div class="value">
+                <i class="heartbeat icon"></i>
+                259.03
+              </div>
+<!--   "nutrition": {
+  "nutrients": [{
+    "title": "Calories",
+    "amount": 259.03, -->
+              <div class="label">
+                Calories
+              </div>
+            </div>
+            <div class="ui statistic">
+              <div class="value">
+                <i class="dashboard icon"></i>
+                30
+              </div>
+<!-- rebound.preparationMinutes: 30 -->
+              <div class="label">
+                Prep time
+              </div>
+            </div>
+            <div class="ui statistic">
+              <div class="value">
+                <i class="wait icon"></i>
+                15
+              </div>
+  <!-- rebound.cookingMinutes: 15 -->
+              <div class="label">
+                Cook time
+              </div>
+            </div>
+          </div>
+          <div class="ui items">
+            <div class="item">
+              <div class="ui image">
+                <img class="ui medium rounded image" src="https://spoonacular.com/recipeImages/Fudgy-dark-chocolate-cake-209849.jpg">
+              </div>
+              <div class="content">
+                <div class="meta">
+                  <span>missing ingredients</span>
+                </div>
+                <div class="ui large list">
+                  <!-- \{{#each this.usedIngredients}} -->
+                  <div class="item">INGREDIENTS</div>
+                  <div class="item">INGREDIENTS</div>
+                  <div class="item">INGREDIENTS</div>
+                  <div class="item">INGREDIENTS</div>
+                  <div class="item">INGREDIENTS</div>
+
+                  <!-- \{{/each}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
+            <button class="ui green button"><i class="shop icon"></i>Add to Cart</button>
+            <span class="right floated">
+          </div>
+
+        </div>
+
+
+        <div class="extra content">
+          <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
+          <span class="right floated">
+    <!-- ** rebound.js "sourceUrl" -->
+            <button class="mini ui button"><i class="external square icon blue"></i><a href="http://www.foodnetwork.com/recipes/guy-fieri/guys-kickin-quesadilla-recipe.html" target="_blank">Link to Recipe</a></button>
+            </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <script>
+  $(document).ready(function() {
+    $(".popper").click(function(){
+      $(this).siblings(".ui.modal.test").modal('show');
+    });
+  })
+  </script>
+
+
+</body>
+</html>
