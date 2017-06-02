@@ -20,4 +20,152 @@
       </a>
     </div>
   </div>
+  <div class="ui vertical masthead center aligned segment">
+    <div class="ui vertical stripe segment word">
+      <div class="ui container think">
+        <h3 class="ui header"><span id="copy"></span><span id="cursor">|</span></h3>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<script type="text/javascript">
+// *** FUNCTIONS ************************************************************/
+
+
+// launch next action
+  function nextAction() {
+    var action = actions[actionCursor];
+    if ( action ) {
+      setTimeout(action.fn, action.delay);
+      actionCursor++;
+    }
+  }
+
+// type a new text
+  function type(text) {
+    var copy = $('#copy')
+      , preHTML = $('#copy').html();
+
+    copy.html(preHTML + text.substr(0, 1));
+    if ( text.length > 1 ) {
+      setTimeout(function() {
+        type(text.substr(1));
+      }, 100);
+
+    } else {
+      nextAction();
+    }
+  }
+
+// strikethrough text
+  function strikethrough(st, ln, size) {
+    var copy = $('#copy')
+      , text = $('#copy').text();
+    if ( !st ) { st = 0; }
+    if ( !ln ) { ln = text.length; }
+    if ( !size ) { size = 1; }
+
+    if ( ln > size-1 ) {
+      var newText = text.substr(0, st) +
+        '<del>' +
+        text.substr(st, size) +
+        '</del>' +
+        text.substr(st + size);
+      copy.html(newText);
+      setTimeout(function() {
+        strikethrough(st, ln, ++size);
+      }, 20);
+
+    } else {
+      nextAction();
+    }
+  }
+
+// remove text
+  function remove() {
+    var cursor = $('#cursor')
+      , copy = $('#copy');
+
+    var width = copy.width()
+      , step = parseInt(width / copy.text().length);
+
+      cursor.insertBefore(cursor.prev('span'));
+      cursor.addClass('negative-indent');
+      copy.css({
+        'background-image' : 'url(image/em.png)',
+        'background-repeat' : 'no-repeat',
+        'background-position' : width + 'px 0'
+      });
+
+      var iMove = setInterval(function() {
+        width -= step;
+        if ( width > 0 ) {
+          copy.css({'background-position' : width + 'px 0'});
+        } else {
+          copy.css({'background-position' : '0 0'});
+          clearInterval(iMove);
+
+          setTimeout(function() {
+            copy.empty();
+            copy.css({
+              'background-color': 'transparent',
+              'background-image' : 'none',
+            });
+            copy.insertBefore(copy.prev('span'));
+            cursor.removeClass('negative-indent');
+            nextAction();
+          }, 500);
+        }
+      }, 20);
+    }
+
+
+// *** ACTIONS **************************************************************/
+  var actions = []
+    , actionCursor = 0;
+
+  // Copy 'Piensa Superior - Más Allá'
+
+    actions.push({
+      delay: 500,
+      fn: function () { type("Let's Eat"); }
+    }, {
+      delay: 300,
+      fn: function () { strikethrough(6, 8); }
+    }, {
+      delay: 300,
+      fn: function () { type(' Be Frugal'); }
+    }, {
+      delay: 600,
+      fn: function () { remove(); }
+    });
+
+    // Copy 'Think Above - Beyond'
+    actions.push({
+      delay: 500,
+      fn: function () { type('Go Out'); }
+    }, {
+      delay: 300,
+      fn: function () { strikethrough(3, 5); }
+    }, {
+      delay: 300,
+      fn: function () { type(' Grocery Shopping'); }
+    }, {
+      delay: 600,
+      fn: function () { remove(); }
+    });
+
+    actions.push({
+      delay: 200,
+      fn: function () { actionCursor = 0;  nextAction(); }
+    });
+
+
+// *** EXECUTION ************************************************************/
+
+// Launch actions
+    nextAction();
+
+</script>
