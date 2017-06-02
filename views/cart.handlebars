@@ -30,58 +30,26 @@
 
       <div class="ui big relaxed divided list">
 
-
-        <!-- sample ingredient response:
-        0
-          : {
-            prodId: 213139,
-            name: "Broccoli Crowns",
-            size: "3 HEADS",
-            unitPrice: 1.56,
-            unitMeasure: "EA",
-            …
-          }
-           -->
-        <!-- INGREDIENT -->
-        <div class="item">
-          <div class="left floated content">
-            <h3>Brocolli</h3>
-          </div>
-          <div class="right floated content">
-            <button class="ui mini right labeled icon button black">
-              <!-- see searchresponse.js unitprice -->
-              $3.45
-              <i class="trash icon"></i>
-            </button>
-          </div>
-        </div>
-        <!-- INGREDIENT -->
-        <div class="item">
-          <div class="left floated content">
-            <h3>Brocolli</h3>
-          </div>
-          <div class="right floated content">
-            <button class="ui mini right labeled icon button black">
-              $3.45
-              <i class="trash icon"></i>
-            </button>
-          </div>
-        </div>
-        <!-- INGREDIENT -->
-        <div class="item">
-          <div class="left floated content">
-            <h3>Brocolli</h3>
-          </div>
-          <div class="right floated content">
-            <button class="ui mini right labeled icon button black">
-              $3.45
-              <i class="trash icon"></i>
-            </button>
-          </div>
-        </div>
-
+        
       </div>
       <button class="positive ui button">View Peapod Cart</button>
     </div>
   </div>
 </div>
+
+<script id="cart-ingredient-template" type="text/x-handlebars-template">
+<div class="item">
+  <div class="left floated content">
+    <h3>Brocolli</h3>
+  </div>
+  <div class="right floated content">
+    <button class="ui mini right labeled icon button black">
+      <!-- see searchresponse.js unitprice -->
+      $3.45
+      <i class="trash icon"></i>
+    </button>
+  </div>
+</div>
+</script>
+
+<script src="js/CartUI.js"></script>
