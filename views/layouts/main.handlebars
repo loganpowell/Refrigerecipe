@@ -12,16 +12,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <link rel="stylesheet" href="./css/style.css">
-  <style>
-    /*body {
-      background-image: url('http://www.beforegame.net/wp-content/uploads/2013/10/Screenshot0028.jpg');
-      background-repeat: no-repeat;
-      background-position: center;
-      height: 100%;
-    }*/
-  </style>
+  <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
+  <!-- <script>
+    var lock = new Auth0Lock('ffo5TCyQ5L4UqFVDpNrDpWsX5JVfgQhN', 'logan.auth0.com', {
+      auth: {
+        redirectUrl: 'http://localhost:3000/fridge',
+        responseType: 'code',
+        params: {
+          scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    });
+  </script> -->
 </head>
 <body>
+  <!-- <button onclick="lock.show();">Login</button> -->
 {{{body}}}
 </body>
 </html>
