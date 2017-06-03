@@ -2,6 +2,8 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var methodOverride = require("method-override");
+var session = require('express-session');
+var dotenv = require('dotenv');
 var db = require("./models");
 
 var app = express();
@@ -20,6 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
+app.use(cookieParser());
+app.use(session({
+  //Here we are creating a unique session identifier
+  secret: 'tx1E2yQbBhsJHNCs',
+  resave: true,
+  saveUninitialized: true
+}));
 
 // Static directory
 app.use(express.static("public"));
