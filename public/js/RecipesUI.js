@@ -65,7 +65,9 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
         detailed_recipe_card_data["missedIngredientCount"] = initial_recipe.missedIngredientCount;
         detailed_recipe_card_data["usedIngredients"] = initial_recipe.usedIngredients;
         detailed_recipe_card_data["usedIngredientCount"] = initial_recipe.usedIngredientCount;
+
         //ready In minutes and cooking minutes might be missing, in which case, assume 20 and 30 by default.
+        this.recipes_details[detailed_recipe_card_data.id] = detailed_recipe_card_data;
         console.log(detailed_recipe_card_data);
         callback(null, true);
       }.bind(this))

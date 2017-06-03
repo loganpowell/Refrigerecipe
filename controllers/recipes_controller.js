@@ -103,6 +103,13 @@ module.exports = function (app) {
             var filtered_data = _.pick(response.data,
               "id", "title", "image", "vegetarian", "vegan","cookingMinutes","preparationMinutes","readyInMinutes",
               "extendedIngredients", "pricePerServing");
+            if(typeof filtered_data.cookingMinutes === 'undefined' || typeof filtered_data.preparationMinutes === 'undefined') {
+              if(typeof filtered_data.readyInMinutes === 'undefined') {
+                filtered_data.readyInMinutes = 45;
+              }
+              filtered_data.cookingMinutes = Math.round(filtered_data.readyInMinutes* .6);
+              filtered_data.preparationMinutes = Math.round(filtered_data.readyInMinutes* .4)
+            }
             res.json(filtered_data);
           });
       }
