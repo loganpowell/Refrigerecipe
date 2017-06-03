@@ -31,6 +31,28 @@ module.exports = function (app) {
       });
     });
 
+    app.put("/cart", function (req, res) {
+      var cart_id = 1;
+
+      carts.findById(cart_id)
+        .then(function(cart) {
+          if(cart) {
+            var body = _.pick(req.body, "ingredients");
+            cart.update({"ingredients": JSON.stringify(body.ingredients)})
+              .then(function(cart) {
+                cart.ingredients = JSON.parse(cart.ingredients);
+                res.json(cart);
+              }, function(e) {
+                res.status(500).send(e);
+              })
+          }else {
+            res.status(404).send();
+          }
+        },function(err)  {
+          res.status(500).send();
+        })
+    });
+
     app.put("/cart/add", function(req, res) {
       //todo: change this cart_id
       var cart_id = 1;
@@ -55,6 +77,18 @@ module.exports = function (app) {
           res.status(500).send();
         })
     });
+
+    app.post("/cart/sendsms", function (req, res) {
+      var cart_id = 1;
+      var phone_number = "5712430741";
+
+      carts.findById(card_id)
+        .then(function(cart) {
+          if(cart) {
+
+          }
+        })
+    })
 
 };
 

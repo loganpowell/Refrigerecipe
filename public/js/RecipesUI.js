@@ -110,10 +110,3 @@ window.onload = function() {
     .then(window.recipesUI.setUpTab);
 };
 
-{/* <script>
-$(document).ready(function() {
-  $(".popper").click(function(){
-    $(this).siblings(".ui.modal.test").modal('show');
-  });
-})
-</script> */}

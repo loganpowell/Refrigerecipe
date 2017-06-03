@@ -170,11 +170,12 @@ FridgeUI.prototype.putFridgeIngredientsToAPI = function () {
 window.onload = function () {
   window.fridgeUI = new FridgeUI();
 
+  //set the handlers for add new ingredient check mark button
   $(FridgeUI.NEW_INGREDIENT_CHECK_BTN_ID).click(window.fridgeUI.addNewIngredientBtnClick.bind(window.fridgeUI));
-  //window.fridgeUI.getFridgeIngredients(1);
+
   window.fridgeUI.getFridgeIngredients()
     .then(window.fridgeUI.displayFridgeIngredients.bind(window.fridgeUI))
     .then(window.fridgeUI.setIngredientOnOffButtonHandlers.bind(window.fridgeUI))
     .then(window.fridgeUI.setRemoveIngredientBtnHandlers.bind(window.fridgeUI));
-  //templatingTest();
+
 };
