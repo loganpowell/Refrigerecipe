@@ -2,6 +2,7 @@
 
 function RecipesUI() {
   this.recipes = [];
+  //a hash that contains all the information for detailed recipes card, including missed ingredients and used ingredients
   this.recipes_details = {};
 }
 
@@ -78,7 +79,12 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
         if(detailed_recipe_card_data["vegetarian"]) {
           $(recipe_id).find('.vegetarian-icon').addClass("leaf")
         }
-        $(recipe_id).find('.recipe-external-link').attr('href', detailed_recipe_card_data.sourceUrl)
+        $(recipe_id).find('.recipe-external-link').attr('href', detailed_recipe_card_data.sourceUrl);
+
+        //Set up the both summary card and detail card with click handler to put additional content
+        //into cart.
+
+        $(recipe_id).find('.add-to-cart-button').click(this.addToCartBtnHander.bind(this));
 
         //console.log(html);
 
@@ -97,6 +103,34 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
   //console.log(resp);
 };
 
+RecipesUI.prototype.addToCartBtnHander = function(event) {
+  var recipeId;
+
+  recipeId = $(event.target).closest(".recipe-card").attr('id');
+  var ingredients = this.recipes_details[recipeId].missedIngredients;
+
+  ingredients = ingredients.map(function(elem) { return {"ingredient":elem.name, "servings_count": 1}});
+
+  var putData = {
+    "ingredients": ingredients,
+    "randomData": "Nothing"
+  };
+
+  console.log(putData);
+  var queryURL = "/cart/add";
+  $.ajax({
+    url: queryURL,
+    method: "PUT",
+    contentType:"application/json",
+    data: JSON.stringify(putData)
+  })
+    .done(function (response) {
+      console.log(response);
+
+    });
+
+};
+
 RecipesUI.prototype.setUpTab = function() {
   $('.menu .item').tab();
 };
@@ -110,10 +144,3 @@ window.onload = function() {
     .then(window.recipesUI.setUpTab);
 };
 
-{/* <script>
-$(document).ready(function() {
-  $(".popper").click(function(){
-    $(this).siblings(".ui.modal.test").modal('show');
-  });
-})
-</script> */}

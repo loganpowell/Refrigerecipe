@@ -59,36 +59,23 @@ CartUI.prototype.clearFridgeIngredients = function (resp) {
   $("#ingredient-list-div").empty();
 };
 
-CartUI.NEW_INGREDIENT_ENTRY_ID = '#new_ingredient_entry';
-CartUI.NEW_INGREDIENT_CHECK_BTN_ID = '#new_ingredient_btn';
 
-CartUI.prototype.addNewIngredientBtnClick = function () {
-  var ingredient_name = $(CartUI.NEW_INGREDIENT_ENTRY_ID).val();
-  if (!ingredient_name.match(/^\s*$/)) {
-    var newIngredient = {"ingredient": ingredient_name, "servings_count": 1};
-    this.clearFridgeIngredients();
-    this.ingredients.push(newIngredient);
-    console.log(ingredient_name);
-
-    this.displayFridgeIngredients();
-    this.setIngredientOnOffButtonHandlers();
-    this.setRemoveIngredientBtnHandlers();
-    this.putFridgeIngredientsToAPI();
-  }else {
-    alert('empty ingredient');
-  }
-};
-
-CartUI.prototype.setIngredientOnOffButtonHandlers = function () {
-  $('.checkbox').checkbox('attach events', '.check.button', 'check');
-  $('.checkbox').checkbox('attach events', '.uncheck.button', 'uncheck');
-
-  //rewrite the check box handler
-  //todo write Ajax data update
-};
 
 CartUI.prototype.setRemoveIngredientBtnHandlers = function () {
   $("button.remove_ingredient_button").click(this.removeIngredientBtnHandler.bind(this));
+};
+
+CartUI.prototype.setSendShoppingListBtnHander = function() {
+  $('.send-shopping-list-button').click(function() {
+    var queryURL = "/cart/sendsms";
+    $.ajax( {
+      url:queryURL,
+      method:"POST",
+      processData: false,
+      contentType: 'application/json',
+      data: "[]"
+    })
+  })
 };
 
 
@@ -107,20 +94,15 @@ CartUI.prototype.removeIngredientBtnHandler = function (event) {
     itemEntryAncestor.remove();
   }
 
-  this.putFridgeIngredientsToAPI();
+  this.putCartIngredientsToAPI();
 };
 
 
-CartUI.prototype.putFridgeIngredientsToAPI = function () {
+CartUI.prototype.putCartIngredientsToAPI = function () {
   //assume fridge id is still 1
   //todo wire up fridge ID, finish this
-  var queryURL = "/fridge/" + this.id;
+  var queryURL = "/cart";
 
-  var putDataIngredients = [
-    {"ingredient": "Beef Chop", "servings_count": 1},
-    {"ingredient": "Salmon", "servings_count": 1},
-    {"ingredient": "Bread", "servings_count": 1}
-  ];
 
   putDataIngredients = this.ingredients.map(
     function (elem) {
@@ -128,8 +110,10 @@ CartUI.prototype.putFridgeIngredientsToAPI = function () {
     });
   var putData = {
     "ingredients": putDataIngredients,
-    "cart_name": "Happy Fridge"
+    "cart_name": "Happy Cart"
   };
+
+  console.log(putData);
 
   $.ajax({
     url: queryURL,
@@ -148,11 +132,9 @@ CartUI.prototype.putFridgeIngredientsToAPI = function () {
 window.onload = function () {
   window.CartUI = new CartUI();
 
-  // $(CartUI.NEW_INGREDIENT_CHECK_BTN_ID).click(window.CartUI.addNewIngredientBtnClick.bind(window.CartUI));
-  ////window.CartUI.getCartIngredients();
   window.CartUI.getCartIngredients()
     .then(window.CartUI.displayCartIngredients.bind(window.CartUI))
-  //   .then(window.CartUI.setIngredientOnOffButtonHandlers.bind(window.CartUI))
-  //   .then(window.CartUI.setRemoveIngredientBtnHandlers.bind(window.CartUI));
-  // //templatingTest();
+    .then(window.CartUI.setRemoveIngredientBtnHandlers.bind(window.CartUI))
+    .then(window.CartUI.setSendShoppingListBtnHander.bind(window.CartUI));
+
 };

@@ -24,27 +24,27 @@
     <div class="column ingredients">
       <h2 class="ui header">
         <div class="ui horizontal divider">
-          Checkout
+          Shopping List
         </div>
       </h2>
 
       <div id="ingredient-list-div" class="ui big relaxed divided list">
       </div>
-      <button class="positive ui button">View Peapod Cart</button>
+      <button class="positive ui button send-shopping-list-button">Send me Shopping List</button>
     </div>
   </div>
 </div>
 
 <script id="cart-ingredient-template" type="text/x-handlebars-template">
   \{{#each ingredients}}
-  <div class="item">
+  <div class="item" index="\{{index}}">
     <div class="left floated content">
       <h3>\{{ingredient}}</h3>
     </div>
     <div class="right floated content">
-      <button class="ui mini right labeled icon button black">
+      <button class="ui mini right labeled icon button black remove_ingredient_button">
         <!-- see searchresponse.js unitprice -->
-        $3.45
+        $5.0
         <i class="trash icon"></i>
       </button>
     </div>
