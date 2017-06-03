@@ -37,7 +37,7 @@ RecipesUI.prototype.displayAllRecipes = function(resp) {
   //console.log(html);
   $("#recipes-list-div").append(html);
   $(".popper").click(function(){
-    $(this).siblings(".ui.modal.test").modal('show');
+    $(this).siblings(".ui.modal.test").modal({detachable: false, observeChanges: true}).modal('show').modal('refresh');
   });
   return resp
 };
