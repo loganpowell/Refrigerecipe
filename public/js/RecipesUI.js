@@ -71,8 +71,15 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
         this.recipes_details[detailed_recipe_card_data.id] = detailed_recipe_card_data;
         console.log(detailed_recipe_card_data);
         var html = detailed_recipe_card_template(detailed_recipe_card_data);
+
+        //update the summary recipe cards with detailed responses.
         var recipe_id = '#' +elem;
         $(recipe_id).find('.modal-detail-card').empty().html(html);
+        if(detailed_recipe_card_data["vegetarian"]) {
+          $(recipe_id).find('.vegetarian-icon').addClass("leaf")
+        }
+        $(recipe_id).find('.recipe-external-link').attr('href', detailed_recipe_card_data.sourceUrl)
+
         //console.log(html);
 
         callback(null, true);

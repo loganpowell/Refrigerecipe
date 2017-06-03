@@ -67,10 +67,10 @@
           <i class="heart outline like icon"></i>
           <!-- response.js "likes" -->
           \{{likes}}
-          <!--<span class="right floated">-->
-            <!--&lt;!&ndash; make the vegetarian thing as a filter &ndash;&gt;-->
-            <!--<i class="leaf icon"></i>-->
-          <!--</span>-->
+          <span class="right floated">
+            <!-- make the vegetarian thing as a filter -->
+            <i class="icon vegetarian-icon"></i>
+          </span>
         </div>
       </div>
       <div class="ui modal modal-detail-card">
@@ -177,7 +177,7 @@
         <span class="right floated">
   <!-- ** rebound.js "sourceUrl" -->
           <button class="mini ui button"><i class="external square icon blue"></i><a
-            href=\{{this.link}} target="_blank">Link to Recipe</a></button>
+            href="" target="_blank" class="recipe-external-link">Link to Recipe</a></button>
           </span>
       </div>
     </div>
@@ -191,7 +191,7 @@
     <div class="header">
       \{{title}}
       <!-- rebound.vegetarian: true -->
-      <i class="leaf icon"></i>
+      <i class="icon vegetarian-icon"></i>
     </div>
     <div class="ui horizontal segments">
       <div class="ui segment">
@@ -211,7 +211,7 @@
         <div class="ui tiny statistic">
           <div class="value">
             <i class="heartbeat icon"></i>
-            259.03
+            \{{Calories}}
           </div>
           <!--   "nutrition": {
           "nutrients": [{
