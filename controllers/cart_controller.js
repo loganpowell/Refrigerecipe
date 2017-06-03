@@ -89,7 +89,7 @@ module.exports = function (app) {
       var at = "ec2ba4c93a9d5b5194187163e4ba21c3";
       var twilio_client = new twilio(aid, at);
 
-      carts.findById(cart_id)
+      carts.findById(cart_id) 
         .then(function(cart) {
           if(cart) {
             var message = cart.ingredients;
