@@ -65,6 +65,19 @@ CartUI.prototype.setRemoveIngredientBtnHandlers = function () {
   $("button.remove_ingredient_button").click(this.removeIngredientBtnHandler.bind(this));
 };
 
+CartUI.prototype.setSendShoppingListBtnHander = function() {
+  $('.send-shopping-list-button').click(function() {
+    var queryURL = "/cart/sendsms";
+    $.ajax( {
+      url:queryURL,
+      method:"POST",
+      processData: false,
+      contentType: 'application/json',
+      data: "[]"
+    })
+  })
+};
+
 
 CartUI.prototype.removeIngredientBtnHandler = function (event) {
   var eventTarget = $(event.target);
@@ -88,13 +101,8 @@ CartUI.prototype.removeIngredientBtnHandler = function (event) {
 CartUI.prototype.putCartIngredientsToAPI = function () {
   //assume fridge id is still 1
   //todo wire up fridge ID, finish this
-  var queryURL = "/cart"
+  var queryURL = "/cart";
 
-  var putDataIngredients = [
-    {"ingredient": "Beef Chop", "servings_count": 1},
-    {"ingredient": "Salmon", "servings_count": 1},
-    {"ingredient": "Bread", "servings_count": 1}
-  ];
 
   putDataIngredients = this.ingredients.map(
     function (elem) {
@@ -104,6 +112,8 @@ CartUI.prototype.putCartIngredientsToAPI = function () {
     "ingredients": putDataIngredients,
     "cart_name": "Happy Cart"
   };
+
+  console.log(putData);
 
   $.ajax({
     url: queryURL,
@@ -124,6 +134,7 @@ window.onload = function () {
 
   window.CartUI.getCartIngredients()
     .then(window.CartUI.displayCartIngredients.bind(window.CartUI))
-    .then(window.CartUI.setRemoveIngredientBtnHandlers.bind(window.CartUI));
+    .then(window.CartUI.setRemoveIngredientBtnHandlers.bind(window.CartUI))
+    .then(window.CartUI.setSendShoppingListBtnHander.bind(window.CartUI));
 
 };
