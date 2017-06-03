@@ -26,6 +26,17 @@ body > .grid {
   cursor: pointer;
 }
 
+.ui.horizontal.segments>.segment {
+  border-left: 0;
+}
+
+.ui.four.statistics {
+  margin: 10px 0 5px;
+}
+
+.ui.items {
+  margin: 0;
+}
 /*CARDS*/
 
 
@@ -55,5 +66,43 @@ body > .grid {
     -webkit-column-count: 3;
        -moz-column-count: 3;
             column-count: 3;
+  }
+}
+
+/*indesx*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "sofia-pro", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 1.6em;
+}
+  .ui.vertical.segment { border: none; }
+
+.ui.vertical.stripe.word { min-height: 550px; }
+ .container.think { padding: 20% 0; }
+  .ui.vertical.stripe .think h3 { font-size: 4em; }
+  #cursor { opacity: 0; animation: cursor 1s infinite;}
+
+@keyframes cursor {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

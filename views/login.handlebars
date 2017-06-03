@@ -27,6 +27,25 @@
   </h2>
   <!--  LOGIN -->
 
+  <div id="root">
+    embedded area
+  </div>
+  <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
+  <script>
+    var lock = new Auth0Lock('ffo5TCyQ5L4UqFVDpNrDpWsX5JVfgQhN', 'logan.auth0.com', {
+      container: 'root',
+      auth: {
+        redirectUrl: 'https://YOUR_APP/callback',
+        responseType: 'code',
+        params: {
+          scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    });
+    lock.show();
+  </script>
+
+<!-- 
   <div class="ui middle aligned center aligned grid">
     <div class="column login">
       <h2 class="ui header">
@@ -56,5 +75,5 @@
         New to refrigerecipe? <a href="#">Sign Up</a>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

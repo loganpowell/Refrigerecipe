@@ -51,8 +51,8 @@ window.onload = function() {
 
 {/* <script>
 $(document).ready(function() {
-  $("#test").click(function(){
-    $(this).siblings().modal('show');
+  $(".popper").click(function(){
+    $(this).siblings(".ui.modal.test").modal('show');
   });
 })
 </script> */}
