@@ -41,11 +41,9 @@
 
 <script id="recipe-card-template" type="text/x-handlebars-template">
 
-  <!-- recipe handlebar card -->
 
-  <!-- recipe handlebar card -->
   \{{#each recipes}}
-  <div id="\{{id}}" class="column" data=\{{id}}>
+  <div id="\{{id}}" class="column recipe-card" data=\{{id}}>
     <div class="ui fluid card">
       <div class="content">
         <!-- response.js "title" -->
@@ -165,7 +163,7 @@
 
         <div class="actions">
           <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
-          <button class="ui green button"><i class="shop icon"></i>Add to Cart</button>
+          <button class="ui green button"><i class="shop icon add-to-cart-button"></i>Add to Cart</button>
           <span class="right floated"></span>
         </div>
 
@@ -278,7 +276,7 @@
 
     <div class="actions">
       <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
-      <button class="ui green button"><i class="shop icon"></i>Add to Cart</button>
+      <button class="ui green button"><i class="shop icon add-to-cart-button"></i>Add to Cart</button>
       <span class="right floated"></span>
     </div>
 
