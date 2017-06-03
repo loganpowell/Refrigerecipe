@@ -37,7 +37,7 @@ RecipesUI.prototype.displayAllRecipes = function(resp) {
   //console.log(html);
   $("#recipes-list-div").append(html);
   $(".popper").click(function(){
-    $(this).siblings(".ui.modal.test").modal({detachable: false, observeChanges: true}).modal('show').modal('refresh');
+    $(this).siblings(".ui.modal.modal-detail-card").modal({detachable: false, observeChanges: true}).modal('show').modal('refresh');
   });
   return resp
 };
@@ -50,24 +50,35 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
   async.everySeries(recipesIdArray, function(elem, callback) {
     console.log(elem);
     var queryURL = "recipes/" + elem;
+    console.log(this);
     $.ajax( {
       url:queryURL,
       method:"GET",
       dataType: 'json'
     })
       .done(function(resp) {
-        //console.log(resp);
 
+        var detailed_recipe_card_data = resp;
+
+        var initial_recipe = _.find(this.recipes, function(o) {return o.id === elem});
+        detailed_recipe_card_data["missedIngredients"] = initial_recipe.missedIngredients;
+        detailed_recipe_card_data["missedIngredientCount"] = initial_recipe.missedIngredientCount;
+        detailed_recipe_card_data["usedIngredients"] = initial_recipe.usedIngredients;
+        detailed_recipe_card_data["usedIngredientCount"] = initial_recipe.usedIngredientCount;
+        //ready In minutes and cooking minutes might be missing, in which case, assume 20 and 30 by default.
+        console.log(detailed_recipe_card_data);
         callback(null, true);
-      })
+      }.bind(this))
       .fail(function(err){
         callback(err, false);
-      })
+      }.bind(this))
 
-  }, function(err, result) {
-    //do nothing
-    console.log(err);
-  });
+  }.bind(this),
+    function(err, result) {
+      //do nothing
+      if(!err) console.log(err);
+    }.bind(this)
+  );
   //console.log(resp);
 };
 
