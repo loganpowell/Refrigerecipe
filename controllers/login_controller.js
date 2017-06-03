@@ -6,4 +6,4 @@ module.exports = function (app) {
         // express callback response by calling burger.selectAllBurger
         res.render("login", {});
     });
-}
+};
