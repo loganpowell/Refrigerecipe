@@ -37,20 +37,15 @@
 
 
 <script src="js/RecipesUI.js"></script>
+<script src="js/vendors/async.js"></script>
 
 <script id="recipe-card-template" type="text/x-handlebars-template">
 
-
-
   <!-- recipe handlebar card -->
-
-
-
-
 
   <!-- recipe handlebar card -->
   \{{#each recipes}}
-  <div id="recipe-\{{id}}" class="column" data=\{{id}}>
+  <div id="\{{id}}" class="column" data=\{{id}}>
     <div class="ui fluid card">
       <div class="content">
         <!-- response.js "title" -->
@@ -80,108 +75,6 @@
       </div>
 
 
-
-
-
-      <div class="ui modal test">
-        <i class="close icon"></i>
-        <div class="header">
-          \{{title}}
-<!-- rebound.vegetarian: true -->
-            <i class="leaf icon"></i>
-        </div>
-        <div class="ui horizontal segments">
-          <div class="ui segment">
-            <div class="ui tiny statistic">
-              <div class="value">
-                <!-- rebound.servings: 2 -->
-                <i class="spoon icon"></i>
-                2
-              </div>
-  <!-- rebound.preparationMinutes: 30 -->
-              <div class="label">
-                Servings
-              </div>
-            </div>
-          </div>
-          <div class="ui segment">
-            <div class="ui tiny statistic">
-              <div class="value">
-                <i class="heartbeat icon"></i>
-                259.03
-              </div>
-  <!--   "nutrition": {
-  "nutrients": [{
-    "title": "Calories",
-    "amount": 259.03, -->
-              <div class="label">
-                Calories
-              </div>
-            </div>
-          </div>
-          <div class="ui segment">
-            <div class="ui tiny statistic">
-              <div class="value">
-                <i class="dashboard icon"></i>
-                30
-              </div>
-  <!-- rebound.preparationMinutes: 30 -->
-              <div class="label">
-                Prep time
-              </div>
-            </div>
-          </div>
-          <div class="ui segment">
-            <div class="ui tiny statistic">
-              <div class="value">
-                <i class="wait icon"></i>
-                15
-              </div>
-  <!-- rebound.cookingMinutes: 15 -->
-              <div class="label">
-                Cook time
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ui horizontal segments">
-          <div class="ui segment">
-            <div class="ui image">
-              <img class="ui fluid image" src="https://spoonacular.com/recipeImages/Fudgy-dark-chocolate-cake-209849.jpg">
-            </div>
-          </div>
-          <div class="ui segment">
-            <div class="meta">
-              <span>MISSING INGREDIENTS</span>
-            </div>
-            <div class="ui large list">
-              \{{#each this.missedIngredients}}
-              <div class="item">\{{this.name}}</div>
-              \{{/each}}
-            </div>
-          </div>
-          <div class="ui segment">
-            <div class="meta">
-              <span>USED INGREDIENTS</span>
-            </div>
-            <div class="ui large list">
-              \{{#each this.usedIngredients}}
-              <div class="item">\{{this.name}}</div>
-              \{{/each}}
-            </div>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
-          <button class="ui green button"><i class="shop icon"></i>Add to Cart</button>
-          <span class="right floated">
-        </div>
-
-      </div>
-
-
       <div class="extra content">
         <button class="mini ui button"><i class="shop icon"></i>Add to Cart</button>
         <span class="right floated">
@@ -193,4 +86,104 @@
     </div>
   </div>
   \{{/each}}
+</script>
+
+<script id="recipe-modal-detail-template" type="text/x-handlebars-template">
+  <div class="ui modal modal-detail-card">
+    <i class="close icon"></i>
+    <div class="header">
+      \{{title}}
+      <!-- rebound.vegetarian: true -->
+      <i class="leaf icon"></i>
+    </div>
+    <div class="ui horizontal segments">
+      <div class="ui segment">
+        <div class="ui tiny statistic">
+          <div class="value">
+            <!-- rebound.servings: 2 -->
+            <i class="spoon icon"></i>
+            2
+          </div>
+          <!-- rebound.preparationMinutes: 30 -->
+          <div class="label">
+            Servings
+          </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="ui tiny statistic">
+          <div class="value">
+            <i class="heartbeat icon"></i>
+            259.03
+          </div>
+          <!--   "nutrition": {
+          "nutrients": [{
+            "title": "Calories",
+            "amount": 259.03, -->
+          <div class="label">
+            Calories
+          </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="ui tiny statistic">
+          <div class="value">
+            <i class="dashboard icon"></i>
+            30
+          </div>
+          <!-- rebound.preparationMinutes: 30 -->
+          <div class="label">
+            Prep time
+          </div>
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="ui tiny statistic">
+          <div class="value">
+            <i class="wait icon"></i>
+            15
+          </div>
+          <!-- rebound.cookingMinutes: 15 -->
+          <div class="label">
+            Cook time
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui horizontal segments">
+      <div class="ui segment">
+        <div class="ui image">
+          <img class="ui fluid image" src="https://spoonacular.com/recipeImages/Fudgy-dark-chocolate-cake-209849.jpg">
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="meta">
+          <span>MISSING INGREDIENTS</span>
+        </div>
+        <div class="ui large list">
+          \{{#each this.missedIngredients}}
+          <div class="item">\{{this.name}}</div>
+          \{{/each}}
+        </div>
+      </div>
+      <div class="ui segment">
+        <div class="meta">
+          <span>USED INGREDIENTS</span>
+        </div>
+        <div class="ui large list">
+          \{{#each this.usedIngredients}}
+          <div class="item">\{{this.name}}</div>
+          \{{/each}}
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="ui black deny button"><i class="inverted share icon"></i>Next Recipe</button>
+      <button class="ui green button"><i class="shop icon"></i>Add to Cart</button>
+      <span class="right floated">
+    </div>
+
+  </div>
 </script>
