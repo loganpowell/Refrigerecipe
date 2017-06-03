@@ -186,7 +186,7 @@
 </script>
 
 <script id="recipe-modal-detail-template" type="text/x-handlebars-template">
-  <div class="ui modal modal-detail-card">
+  <!--<div class="ui modal modal-detail-card">-->
     <i class="close icon"></i>
     <div class="header">
       \{{title}}
@@ -199,7 +199,7 @@
           <div class="value">
             <!-- rebound.servings: 2 -->
             <i class="spoon icon"></i>
-            2
+            \{{servings}}
           </div>
           <!-- rebound.preparationMinutes: 30 -->
           <div class="label">
@@ -226,7 +226,7 @@
         <div class="ui tiny statistic">
           <div class="value">
             <i class="dashboard icon"></i>
-            30
+            \{{preparationMinutes}}
           </div>
           <!-- rebound.preparationMinutes: 30 -->
           <div class="label">
@@ -238,7 +238,7 @@
         <div class="ui tiny statistic">
           <div class="value">
             <i class="wait icon"></i>
-            15
+            \{{cookingMinutes}}
           </div>
           <!-- rebound.cookingMinutes: 15 -->
           <div class="label">
@@ -251,7 +251,7 @@
     <div class="ui horizontal segments">
       <div class="ui segment">
         <div class="ui image">
-          <img class="ui fluid image" src="https://spoonacular.com/recipeImages/Fudgy-dark-chocolate-cake-209849.jpg">
+          <img class="ui fluid image" src="\{{image}}">
         </div>
       </div>
       <div class="ui segment">
@@ -282,5 +282,5 @@
       <span class="right floated"></span>
     </div>
 
-  </div>
+  <!--</div>-->
 </script>

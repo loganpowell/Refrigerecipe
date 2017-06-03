@@ -45,12 +45,13 @@ RecipesUI.prototype.displayAllRecipes = function(resp) {
 RecipesUI.prototype.setupRecipesModalCards = function() {
 
   var recipesIdArray = this.recipes.map(function(elem) {return elem.id});
-  recipesIdArray = recipesIdArray.slice(0, 2);
-  //recipesIdArray = [325270];
+
   async.everySeries(recipesIdArray, function(elem, callback) {
     console.log(elem);
     var queryURL = "recipes/" + elem;
     console.log(this);
+    var detailed_recipe_card_source = $('#recipe-modal-detail-template').html();
+    var detailed_recipe_card_template = Handlebars.compile(detailed_recipe_card_source);
     $.ajax( {
       url:queryURL,
       method:"GET",
@@ -69,6 +70,11 @@ RecipesUI.prototype.setupRecipesModalCards = function() {
         //ready In minutes and cooking minutes might be missing, in which case, assume 20 and 30 by default.
         this.recipes_details[detailed_recipe_card_data.id] = detailed_recipe_card_data;
         console.log(detailed_recipe_card_data);
+        var html = detailed_recipe_card_template(detailed_recipe_card_data);
+        var recipe_id = '#' +elem;
+        $(recipe_id).find('.modal-detail-card').empty().html(html);
+        //console.log(html);
+
         callback(null, true);
       }.bind(this))
       .fail(function(err){

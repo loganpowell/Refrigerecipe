@@ -54,7 +54,7 @@ module.exports = function (app) {
               // "ingredients": ["apples","flour","sugar"].join(","),
               "ingredients": ingredients.join(","),
               "limitLicense": "false",
-              "number": "50",
+              "number": "20",
               "ranking": "1"
             }
 
@@ -102,10 +102,10 @@ module.exports = function (app) {
             //console.log(response.data);
             var filtered_data = _.pick(response.data,
               "id", "title", "image", "vegetarian", "vegan","cookingMinutes","preparationMinutes","readyInMinutes",
-              "extendedIngredients", "pricePerServing");
+              "extendedIngredients", "pricePerServing", "servings");
             if(typeof filtered_data.cookingMinutes === 'undefined' || typeof filtered_data.preparationMinutes === 'undefined') {
               if(typeof filtered_data.readyInMinutes === 'undefined') {
-                filtered_data.readyInMinutes = 45;
+                filtered_data.readyInMinutes = 60;
               }
               filtered_data.cookingMinutes = Math.round(filtered_data.readyInMinutes* .6);
               filtered_data.preparationMinutes = Math.round(filtered_data.readyInMinutes* .4)
