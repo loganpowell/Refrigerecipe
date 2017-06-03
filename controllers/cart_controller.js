@@ -56,26 +56,34 @@ module.exports = function (app) {
     app.put("/cart/add", function(req, res) {
       //todo: change this cart_id
       var cart_id = 1;
+      res.format({
+        'text/html': function () {
+          res.render("cart", {});
+        },
+        'application/json': function () {
+          carts.findById(cart_id)
+            .then(function (cart) {
+              if (cart) {
+                var body = _.pick(req.body, "ingredients");
+                var newIngredientList = body.ingredients;
+                var existingIngredientList = JSON.parse(cart.ingredients);
+                newIngredientList = newIngredientList.concat(existingIngredientList);
+                cart.update({"ingredients": JSON.stringify(newIngredientList)})
+                  .then(function (cart) {
+                    cart.ingredients = JSON.parse(cart.ingredients);
+                    res.json(cart);
+                  }, function (e) {
+                    res.status(500).send(e);
+                  })
+              } else {
+                res.status(404).send();
+              }
+            }, function (err) {
+              res.status(500).send();
+            })
+        }
+      });
 
-      carts.findById(cart_id)
-        .then(function(cart) {
-          if(cart) {
-            var body = _.pick(req.body, "ingredients");
-            var newIngredientList = body.ingredients;
-            newIngredientList = newIngredientList.concat(req.body.ingredients);
-            cart.update({"ingredients": JSON.stringify(newIngredientList)})
-              .then(function(cart) {
-                cart.ingredients = JSON.parse(cart.ingredients);
-                res.json(cart);
-              }, function(e) {
-                res.status(500).send(e);
-              })
-          }else {
-            res.status(404).send();
-          }
-        },function(err)  {
-          res.status(500).send();
-        })
     });
 
     app.post("/cart/sendsms", function (req, res) {
@@ -92,6 +100,7 @@ module.exports = function (app) {
             var message = cart.ingredients;
             message = JSON.parse(message);
             message = message.map(function(elem) {return elem.ingredient;});
+            message.unshift("Your shopping List");
             message = message.join("\n");
 
             twilio_client.messages.create( {

@@ -96,10 +96,10 @@ CartUI.prototype.putCartIngredientsToAPI = function () {
     {"ingredient": "Bread", "servings_count": 1}
   ];
 
-  // putDataIngredients = this.ingredients.map(
-  //   function (elem) {
-  //     return _.pick(elem, "ingredient", "servings_count");
-  //   });
+  putDataIngredients = this.ingredients.map(
+    function (elem) {
+      return _.pick(elem, "ingredient", "servings_count");
+    });
   var putData = {
     "ingredients": putDataIngredients,
     "cart_name": "Happy Cart"
