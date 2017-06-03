@@ -89,7 +89,7 @@ module.exports = function (app) {
 
       },
       'application/json': function () {
-        var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeId + "/information?includeNutrition=false";
+        var queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/" + recipeId + "/information?includeNutrition=true";
         axios.get(queryURL,
           {
             headers: {
@@ -102,13 +102,20 @@ module.exports = function (app) {
             //console.log(response.data);
             var filtered_data = _.pick(response.data,
               "id", "title", "image", "vegetarian", "vegan","cookingMinutes","preparationMinutes","readyInMinutes",
-              "extendedIngredients", "pricePerServing", "servings");
+              "extendedIngredients", "pricePerServing", "servings", "sourceUrl", "spoonacularSourceUrl", "nutrition");
             if(typeof filtered_data.cookingMinutes === 'undefined' || typeof filtered_data.preparationMinutes === 'undefined') {
               if(typeof filtered_data.readyInMinutes === 'undefined') {
                 filtered_data.readyInMinutes = 60;
               }
               filtered_data.cookingMinutes = Math.round(filtered_data.readyInMinutes* .6);
               filtered_data.preparationMinutes = Math.round(filtered_data.readyInMinutes* .4)
+            }
+            if (typeof filtered_data.nutrition != "undefined") {
+              var nutrition = filtered_data.nutrition;
+              var Calories = _.find(nutrition.nutrients, function(elem) {return elem.title === "Calories"});
+              if (typeof Calories != "undefined") {
+                filtered_data.Calories = Calories.amount;
+              }
             }
             res.json(filtered_data);
           });
