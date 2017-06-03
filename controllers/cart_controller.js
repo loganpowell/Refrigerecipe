@@ -82,10 +82,27 @@ module.exports = function (app) {
       var cart_id = 1;
       var phone_number = "5712430741";
 
-      carts.findById(card_id)
+      var aid= "AC454129ef1bd595b5c9fec67165cf14c3";
+      var at = "ec2ba4c93a9d5b5194187163e4ba21c3";
+      var twilio_client = new twilio(aid, at);
+
+      carts.findById(cart_id)
         .then(function(cart) {
           if(cart) {
+            var message = cart.ingredients;
+            message = JSON.parse(message);
+            message = message.map(function(elem) {return elem.ingredient;});
+            message = message.join("\n");
 
+            twilio_client.messages.create( {
+              body: message,
+              to:"+15712430741",
+              from:"+12403033772"
+            })
+              .then(function(message){
+                console.log(message.sid);
+                res.status(200).send();
+              });
           }
         })
     })
