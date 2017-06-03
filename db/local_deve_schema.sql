@@ -17,7 +17,7 @@ PRIMARY KEY (id)
 );
 
 
-/* a fridge has a fridge name, an association a user, and a contents stored as JSON string*/
+/* a fridge has a fridge name, an association a user, and contents stored as JSON string*/
 CREATE TABLE fridges (
 id INT NOT NULL AUTO_INCREMENT,
 fridge_name varchar(255) NOT NULL,
@@ -29,3 +29,17 @@ FOREIGN KEY (user_id)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 );
+
+/* a cart has a fridge name, an association a user, and contents stored as JSON string*/
+CREATE TABLE carts (
+id INT NOT NULL AUTO_INCREMENT,
+cart_name varchar(255) NOT NULL,
+user_id INT NOT NULL,
+ingredients varchar (4095),
+PRIMARY KEY(id),
+FOREIGN KEY (user_id)
+    REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+

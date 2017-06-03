@@ -21,6 +21,7 @@
     "passport-auth0": "^0.6.0",
     "sequelize": "^3.27.0",
     "sequelize-heroku": "^1.0.0",
+    "twilio": "^3.3.0",
     "underscore": "^1.8.3",
     "watchify": "^3.7.0"
   },

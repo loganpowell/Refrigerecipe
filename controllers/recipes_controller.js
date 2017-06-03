@@ -54,7 +54,7 @@ module.exports = function (app) {
               // "ingredients": ["apples","flour","sugar"].join(","),
               "ingredients": ingredients.join(","),
               "limitLicense": "false",
-              "number": "50",
+              "number": "20",
               "ranking": "1"
             }
 
@@ -67,7 +67,8 @@ module.exports = function (app) {
           recipe["missedIngredients"] = recipe["missedIngredients"].map(function (missed_ingredient) {
             return _.pick(missed_ingredient, "id", "amount", "unit", "name", "image");
           });
-          return _.pick(recipe, "id", "title", "image", "missedIngredientCount", "missedIngredients", "likes")
+          return _.pick(recipe, "id", "title", "image", "missedIngredientCount", "missedIngredients",
+            "usedIngredientCount", "usedIngredients", "likes")
         });
         return filtered_data;
       })
@@ -100,8 +101,15 @@ module.exports = function (app) {
             //console.log(response.status, response.headers);
             //console.log(response.data);
             var filtered_data = _.pick(response.data,
-              "id", "title", "cuisines", "image", "vegetarian", "vegan", "spoonacularScore",
-              "extendedIngredients", "pricePerServing", "instructions", "analyzedInstructions");
+              "id", "title", "image", "vegetarian", "vegan","cookingMinutes","preparationMinutes","readyInMinutes",
+              "extendedIngredients", "pricePerServing", "servings");
+            if(typeof filtered_data.cookingMinutes === 'undefined' || typeof filtered_data.preparationMinutes === 'undefined') {
+              if(typeof filtered_data.readyInMinutes === 'undefined') {
+                filtered_data.readyInMinutes = 60;
+              }
+              filtered_data.cookingMinutes = Math.round(filtered_data.readyInMinutes* .6);
+              filtered_data.preparationMinutes = Math.round(filtered_data.readyInMinutes* .4)
+            }
             res.json(filtered_data);
           });
       }
