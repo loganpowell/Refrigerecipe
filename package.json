@@ -22,7 +22,7 @@
     "sequelize": "^5.15.1",
     "sequelize-heroku": "^1.0.0",
     "twilio": "^3.3.0",
-    "underscore": "^1.8.3",
+    "underscore": "^1.12.1",
     "watchify": "^3.7.0"
   },
   "devDependencies": {
